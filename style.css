@@ -54,3 +54,33 @@ a:hover{
   letter-spacing:0.5px;
   font-size: 17px;
 }
+
+.subtitle{
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+button{
+  background:transparent;
+  border:none;
+  outline:none;
+  font-family: monospace;
+
+  cursor: pointer;
+}
+
+button:hover{
+  text-decoration:underline;
+}
+
+button::before{
+  content:"[";
+}
+
+button::after{
+  content:"]";
+}
+
+.limited{
+  max-width: 600px;
+}
