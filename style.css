@@ -29,7 +29,11 @@ ul{
   list-style-type: none;
 }
 
-.link>a{
+ul.link{
+  padding-left: 0;
+}
+
+.link>*{
   display: block;
   padding-bottom: 4px;
 }
