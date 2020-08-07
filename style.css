@@ -59,6 +59,7 @@ a:hover{
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   letter-spacing:0.5px;
+  line-height: 22px;
   font-size: 17px;
 }
 
@@ -95,4 +96,8 @@ button::after{
 
 .mono{
   font-family: monospace;
+}
+
+i{
+  opacity: 0.65;
 }
