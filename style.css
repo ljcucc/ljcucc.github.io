@@ -12,6 +12,7 @@ h1{
 h2{
   font-size: 30px;
   margin:16px 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h3{
@@ -87,4 +88,9 @@ button::after{
 
 .limited{
   max-width: 600px;
+  overflow-wrap: break-word;
+}
+
+.mono{
+  font-family: monospace;
 }
