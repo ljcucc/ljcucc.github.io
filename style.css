@@ -2,6 +2,8 @@ body{
   padding: 16px;
   font-family: monospace;
   font-weight: 300;
+
+  margin-left: 6%;
 }
 
 h1{
