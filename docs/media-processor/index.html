@@ -11,18 +11,37 @@
   <a href="/">[Home]</a> / <a href="/products.html">[Products]</a>
 
   <h1>Media Processor</h1>
+  <ul class="link">
+    <li><a href="#get_started">1. Get Started</a></li>
+    <li><a href="#interface">2. Interface</a></li>
+  </ul>
   <div class="body">
     <h3>Introduction</h3>
     Meida Processor is a minimalist photo editor.<br>
     Which using less computing resources and clear interface to perform operation.<br>
     <p>
-      <i>That inspired by <a href="https://hundredrabbits.github.io/Ronin/">Ronin*</a></i>
+      <i>That inspired by <a target="_blank" href="https://hundredrabbits.github.io/Ronin/">Ronin*</a></i>
     </p>
 
-    <h3>Get Started</h3>
-    Meida Processor is designed to user friendly, so the concepts are very similar to photoshop.
-    <h4>Interfaces</h4>
+    <h3 id="get_started">Get Started</h3>
+    <p>Go to <a href="https://ljcucc.github.io/MediaProcessor/public" target="_blank">live demo*</a> to try it out.</p>
+    Meida Processor is designed to user friendly which also base on layers, so the concepts are very similar to photoshop.
+    
+    <h4 id="interface">Interfaces</h4>
+    <img style="display:block;height: 50vh;margin: 16px 0;" src="./assets/screenshot.gif" alt="" srcset="">
+    <p>
+      This is the interface of MediaProcessor. [Helper] at the bottom of the left, which is an reference while you typing. try to click any line, [Helper] will showing the reference of current line.
+    </p>
+    <p>
+      You can try to type this in your code editor then press [Ctrl]+[R]:
+      <pre class="code">- background: black
++ layer1: blank
+  - shape: rect
+  - fill: white</pre>
+    </p>
     <h4>Layers & Properties</h4>
+    Comment in codes will look like this:
+    <pre class="code">- foo: bar ; this is comment</pre>
   </div>
   <p>
     <div style="margin-top: 100px;" class="subtitle">About this and series sites.</div>
