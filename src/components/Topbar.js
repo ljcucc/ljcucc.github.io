@@ -11,6 +11,7 @@ class Topbar extends LitElement{
       align-items: center;
       gap: 16px;
       padding-inline-start: 5vmin;
+      /* overflow: scroll; */
 
       font-family: Helvetica, Arial, sans-serif;
       box-shadow: 0px -5px 0px;
@@ -34,6 +35,7 @@ class Topbar extends LitElement{
       font-size: 18px;
       text-decoration: none;
       color: black;
+      width: auto;
     }
 
     .appbar .home{
