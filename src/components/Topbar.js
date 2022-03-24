@@ -55,7 +55,7 @@ class Topbar extends LitElement{
     <a href="https://unsplash.com/@ljcucc">Unsplash</a>
     <a href="https://github.com/ljcucc">Github</a>
     <a href="https://github.com/ljcucc/ljcucc.github.io">[Source code]</a>
-    <a href="/old/index.html">Old site</a>
+    <a href="https://ljcucc.github.io/old/index.html">Old site</a>
   </div>
 
 
