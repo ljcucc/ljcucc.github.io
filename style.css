@@ -1,112 +1,65 @@
-body{
-  padding: 16px;
-  font-family: monospace;
-  font-weight: 300;
+:root{
+  --body-font-size:14px;
+  --button-font-size: 14px;
+  --title-font-size: 16px;
 
-  margin-left: 6%;
+  --h2-font-size:30px;
+  --h1-font-size:60px;
+
+  --card-body-font-size:14px;
 }
 
-h1{
-  font-size: 30px;
-  font-family: Arial, Helvetica, sans-serif;
+body, html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-h2{
-  font-size: 30px;
-  margin:16px 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+.appbar {
+  height: 60px;
+  width: 100vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding-inline-start: 5vmin;
 
-h3{
-  font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+  font-family: Helvetica, Arial, sans-serif;
+  box-shadow: 0px -5px 0px;
+  transition: box-shadow 0.35s;
 
-h4{
-  font-size: 20px;
+  top: 0;
+  left:0;
+  right:0;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  position: sticky;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   
-  margin-bottom: 16px;
+  box-sizing: border-box;
 }
 
-ul{
-  list-style-type: none;
+.appbar a{
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
 }
 
-ul.link{
-  padding-left: 0;
+.appbar .home{
+  font-weight: 800;
+  margin-inline-end: 16px;
 }
 
-.link>*{
-  display: block;
-  padding-bottom: 4px;
+.appbar:hover{
+  box-shadow: 1px -5px 10px;
 }
 
-.indent{
-  padding-left: 16px;
-}
-
-a{
-  color:black;
-  text-decoration:none;
-}
-
-a:hover{
-  text-decoration:underline;
-}
-
-.code{
-  font-family: monospace;
-  background:black;
+#outlet{
   padding: 16px;
-  color:white;
-  font-size: 14px;
-  line-height: 16px;
+  height: 200vh;
 }
 
-.body{
-  max-width: 600px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  letter-spacing:0.5px;
-  line-height: 22px;
-  font-size: 17px;
-}
-
-.subtitle{
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-button{
-  background:transparent;
-  border:none;
-  outline:none;
-  font-family: monospace;
-
-  cursor: pointer;
-}
-
-button:hover{
-  text-decoration:underline;
-}
-
-button::before{
-  content:"[";
-}
-
-button::after{
-  content:"]";
-}
-
-.limited{
-  max-width: 600px;
-  overflow-wrap: break-word;
-}
-
-.mono{
-  font-family: monospace;
-}
-
-i{
-  opacity: 0.65;
-}
