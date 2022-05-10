@@ -5,31 +5,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💻 🐺 site</title>
+  <title>ljcu.cc</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
-
-  <link rel="stylesheet" href="/style.css">
-
-  <!-- <script defer src="//unpkg.com/es-module-shims@0.2.1/dist/es-module-shims.js"></script> -->
-  <!-- https://forum.babylonjs.com/t/problems-loading-babylon-via-es-modules/2031/2 -->
-  
-  <!-- <script type="importmap-shim">
-    {
-      "imports": {
-        "tslib": "//unpkg.com/tslib@1.9.3/tslib.es6.js"
-      }
+  <style>
+    :root{
+      font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+      --title-size: 80px;
+      --subtitle-size: 20px;
+      letter-spacing: 0.2px;
     }
-  </script> -->
+
+    body{
+      padding: 16px;
+
+      transform-origin: top left;
+      transform: scale(1.2, 0.8);
+
+      overflow-x: hidden;
+
+      width: 100vw;
+    }
+
+    .title{
+      font-size: var(--title-size);
+      font-style: italic;
+    }
+
+    .links{
+      margin-top: 80vh;
+      font-size: var(--subtitle-size);
+    }
+
+    .links>*{
+      margin-top: 8px;
+      text-transform: uppercase;
+      box-sizing:border-box;
+
+      cursor: pointer;
+    }
+
+    a{
+      display: block;
+      color: black;
+      text-decoration: none;
+    }
+
+    .links>a:hover{
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 
-  <top-bar></top-bar>
-  <div id="outlet"></div>
+<body>
+  <a class="title" href="https://github.com/ljcucc">ljcucc</a>
 
-  <script type="module" src="/src/index.js"></script>
+  <div class="links">
+    <a href="https://ljcu.cc/knowledge_base" target="_blank" rel="noopener noreferrer">wiki</a>
+    <a href="https://github.com/ljcucc" target="_blank" rel="noopener noreferrer">github</a>
+    <a href="https://unsplash.com/ljcucc" target="_blank" rel="noopener noreferrer">unsplash</a>
+    <a href="https://instagram.com/ljcucc" target="_blank" rel="noopener noreferrer">instagram</a>
+    <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a>
+    <div style="margin-top: 60px;" title="this version is built in 2022 05 11">VER. 022_511</div>
+  </div>
 </body>
 
 </html>
