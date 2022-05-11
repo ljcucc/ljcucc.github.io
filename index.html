@@ -58,7 +58,8 @@
       margin-bottom: 5vmin;
     }
 
-    .links>*, .link {
+    .links>*,
+    .link {
       margin-bottom: 0.5vmin;
       text-transform: uppercase;
       box-sizing: border-box;
@@ -79,8 +80,8 @@
       text-decoration: underline;
     }
 
-    #twitter_menu~label{
-      cursor:pointer;
+    #twitter_menu~label {
+      cursor: pointer;
     }
 
     #section2 {
@@ -90,33 +91,57 @@
       /* font-family: Helvetica, Arial, sans-serif; */
     }
 
-    #twitter_menu:hover ~ .menu{
-      display:block;
+    #twitter_menu:hover~.menu {
+      display: block;
       opacity: 0;
-      left: 80px;
+      left: calc(15vw - 20px);
     }
 
-    #twitter_menu{
+    #twitter_menu:hover~.menu>*:nth-child(1) {
+      margin-left: -2px;
+    }
+
+
+    #twitter_menu {
       display: none;
     }
 
-    #twitter_menu:checked ~ .menu{
+    #twitter_menu:checked~.menu {
       display: block;
       opacity: 1;
     }
 
-    #twitter_menu:hover:checked ~ .menu{
-      left:100px;
+    #twitter_menu:hover:checked~.menu {
+      left: 15vw;
     }
 
-    .menu{
+    #twitter_menu:hover:checked~.menu>*:nth-child(1) {
+      margin-left: 0;
+    }
+
+    #twitter_menu~.menu>*:nth-child(1) {
+      transition: all 0.35s;
+    }
+
+    .menu {
       display: none;
       opacity: 0;
       transition: all 0.35s;
       position: absolute;
-      left:100px;
-      top:0;
+      left: 15vw;
+      top: 0;
       width: 500px;
+    }
+
+    .scrollbar {
+      position: sticky;
+      bottom: 10vh;
+    }
+
+    .scrollbar>.scroll-line {
+      min-width: 100vh;
+      height: 1px;
+      background-color: black;
     }
   </style>
 </head>
@@ -141,9 +166,10 @@
           </div>
         </div>
         <!-- <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a> -->
-        <div style="margin-top: 60px;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
+        <div style="margin-top: 60px;position:sticky;left:0;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
       </div>
     </div>
+
   </div>
 
 
@@ -153,8 +179,8 @@
 </body>
 
 <script>
-  (()=>{
-    function onload(){
+  (() => {
+    function onload() {
       const scrollLeftBtn = document.querySelector("#scroll_left");
       window.addEventListener("scroll", onscroll);
       scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
@@ -165,22 +191,22 @@
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function onScrollLeftBtn(){
+    async function onScrollLeftBtn() {
       const limit = document.body.offsetWidth;
       const cur = window.scrollX > limit ? limit : window.scrollX;
 
       window.scrollTo({
         top: 0,
-        left: limit,
+        left: limit + 100,
         behavior: 'smooth'
       });
     }
 
-    function onscroll(){
-      const limit = document.body.offsetWidth, cur = window.scrollX > limit? limit: window.scrollX;
-      const rate = cur/limit;
+    function onscroll() {
+      const limit = document.body.offsetWidth, cur = window.scrollX > limit ? limit : window.scrollX;
+      const rate = cur / limit;
       // document.body.style.background = `rgba(50,200, 200, ${cur/limit})`;
-      document.body.style.background = `hsl(30,30%, ${100-rate*50}%)`;
+      document.body.style.background = `hsl(30,30%, ${100 - rate * 50}%)`;
     }
 
     window.addEventListener("load", onload);
