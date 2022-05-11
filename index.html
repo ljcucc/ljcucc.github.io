@@ -58,7 +58,7 @@
       margin-bottom: 5vmin;
     }
 
-    .links>* {
+    .links>*, .link {
       margin-bottom: 0.5vmin;
       text-transform: uppercase;
       box-sizing: border-box;
@@ -79,11 +79,44 @@
       text-decoration: underline;
     }
 
+    #twitter_menu~label{
+      cursor:pointer;
+    }
+
     #section2 {
       min-width: 50vw;
       padding: 5vmin 10vmin;
       font-size: 5vmin;
       /* font-family: Helvetica, Arial, sans-serif; */
+    }
+
+    #twitter_menu:hover ~ .menu{
+      display:block;
+      opacity: 0;
+      left: 80px;
+    }
+
+    #twitter_menu{
+      display: none;
+    }
+
+    #twitter_menu:checked ~ .menu{
+      display: block;
+      opacity: 1;
+    }
+
+    #twitter_menu:hover:checked ~ .menu{
+      left:100px;
+    }
+
+    .menu{
+      display: none;
+      opacity: 0;
+      transition: all 0.35s;
+      position: absolute;
+      left:100px;
+      top:0;
+      width: 500px;
     }
 
     #setion2{
@@ -97,12 +130,20 @@
     <div class="content">
       <a class="title" href="https://github.com/ljcucc">ljcucc</a>
 
-      <div class="links">
+      <div class="links twitter_menu_container">
         <a href="https://ljcu.cc/knowledge_base" target="_blank" rel="noopener noreferrer">wiki</a>
         <a href="https://github.com/ljcucc" target="_blank" rel="noopener noreferrer">github</a>
         <a href="https://unsplash.com/ljcucc" target="_blank" rel="noopener noreferrer">unsplash</a>
         <a href="https://instagram.com/ljcucc" target="_blank" rel="noopener noreferrer">instagram</a>
-        <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a>
+        <div class="link">
+          <input type="checkbox" id="twitter_menu">
+          <label for="twitter_menu">twitter</label>
+          <div class="menu">
+            <a href="https://twitter.com/the_ITWolf" target="_blank" rel="noopener noreferrer">online furson</a>
+            <a href="https://twitter.com/ljcucc" target="_blank" rel="noopener noreferrer">real person</a>
+          </div>
+        </div>
+        <!-- <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a> -->
         <div style="margin-top: 60px;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
       </div>
     </div>
@@ -117,22 +158,32 @@
 <script>
   (()=>{
     function onload(){
-      const scrollLeftBtn = document.querySelector("scroll_left");
+      const scrollLeftBtn = document.querySelector("#scroll_left");
       window.addEventListener("scroll", onscroll);
-      scrollLeftBtn.addEventListener("click", e=>{
-      });
+      scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
       onscroll();
     }
 
-    function onScrollLeft(){
-      alert()
+    function timeout(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function onScrollLeftBtn(){
+      const limit = document.body.offsetWidth;
+      const cur = window.scrollX > limit ? limit : window.scrollX;
+
+      window.scrollTo({
+        top: 0,
+        left: limit,
+        behavior: 'smooth'
+      });
     }
 
     function onscroll(){
       const limit = document.body.offsetWidth, cur = window.scrollX > limit? limit: window.scrollX;
       const rate = cur/limit;
       // document.body.style.background = `rgba(50,200, 200, ${cur/limit})`;
-      document.body.style.background = `hsl(${rate*50},30%, ${100-rate*50}%)`;
+      document.body.style.background = `hsl(30,30%, ${100-rate*50}%)`;
     }
 
     window.addEventListener("load", onload);
