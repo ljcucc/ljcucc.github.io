@@ -195,9 +195,7 @@
       const scrollLeftBtn = document.querySelector("#scroll_left");
 
       scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
-
-      scrollbar = new Scrollbar();
-      csb = new CustomScrollbar();
+      window.addEventListener("scroll", onscroll);
     }
 
     function timeout(ms) {
