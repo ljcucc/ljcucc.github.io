@@ -13,6 +13,14 @@
       --title-size: 10vmin;
       --subtitle-size: 2vh;
       letter-spacing: 0.2px;
+
+      -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
     }
 
     body {
@@ -27,6 +35,7 @@
       min-width: 100vw;
       display: inline-block;
       padding-bottom: 0;
+      /* height: 100vh; */
     }
 
     .body>.content {
@@ -56,6 +65,7 @@
       position: absolute;
       bottom: 0;
       margin-bottom: 5vmin;
+      margin-bottom: 10vmin;
     }
 
     .links>*,
@@ -134,14 +144,25 @@
     }
 
     .scrollbar {
-      position: sticky;
-      bottom: 10vh;
+      position: fixed;
+      bottom: 5vmin;
     }
 
     .scrollbar>.scroll-line {
       min-width: 100vh;
-      height: 1px;
+      height: 3px;
       background-color: black;
+    }
+
+    .scrollbar>.scroll-ball{
+      height: 16px;
+      width: 16px;
+      border-radius: 100%;
+      border: 3px solid black;
+      position:absolute;
+      top:-10px;
+      box-sizing: content-box;
+      background:white;
     }
   </style>
 </head>
@@ -166,8 +187,14 @@
           </div>
         </div>
         <!-- <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a> -->
-        <div style="margin-top: 60px;position:sticky;left:0;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
+        <div style="margin-top: 60px;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
       </div>
+
+    </div>
+
+    <div class="scrollbar">
+      <div class="scroll-line"></div>
+      <div class="scroll-ball"></div>
     </div>
 
   </div>
@@ -178,13 +205,100 @@
   </div>
 </body>
 
-<script>
+<script type="module">
   (() => {
+
+    class CustomScrollbar{
+      constructor(){
+        this.scrollBall = document.querySelector(".scroll-ball");
+        this.scrollBar = document.querySelector(".scrollbar");
+        this.ballPos = 0;
+        this.rate = scrollbar.getLimit();
+        
+
+        // this.scrollBall.addEventListener("mousedown", e => {
+        //   this.mouseIsDown = true;
+        // });
+
+        // window.addEventListener("mousemove", e => {
+        //   if (!this.mouseIsDown) return;
+        //   console.log(e.movementX)
+        //   this.setPosByMM(e.movementX);
+        // })
+
+        // window.addEventListener("mouseup", e => {
+        //   if (this.mouseIsDown)
+        //     this.mouseIsDown = false;
+        // })
+
+        window.addEventListener("scroll", ()=>this.render());
+      }
+
+      // setPosByMoiseMove
+      setPosByMM(mouseX){
+        this.render();
+      }
+
+      setPos(rate){
+        this.rate = rate
+        this.ballPos = rate * this.scrollBar.clientWidth;
+      }
+
+      render(){
+        this.setPos(scrollbar.getRate());
+        this.scrollBall = document.querySelector(".scroll-ball");
+
+        this.scrollBall.style.background = `hsl(30,30%, ${100 - this.rate * 50}%)`;
+        this.scrollBall.style.marginLeft = `${this.ballPos}px`;
+      }
+    }
+
+    class Scrollbar{
+      constructor(){
+        window.addEventListener("scroll", this.render);
+      }
+
+      getLimit(){
+        const limit = document.body.offsetWidth, cur = window.scrollX > limit ? limit : window.scrollX;
+        return limit;
+      }
+
+      getCur(){
+        const cur = window.scrollX > this.getLimit() ? this.getLimit() : window.scrollX;
+        return cur;
+      }
+
+      getRate(){
+        return this.getCur() / this.getLimit();
+      }
+
+      scrollByPos(value, noSmooth) {
+        window.scrollTo({
+          top: 0,
+          left: value,
+          behavior: noSmooth?'auto':'smooth'
+        });
+        this.render();
+      }
+
+      render(){
+        document.body.style.background = `hsl(30,30%, ${100 - scrollbar.getRate() * 50}%)`;
+
+      }
+
+      setPosRate(value, max) {
+      }
+    }
+
+    var csb, scrollbar;
+
     function onload() {
       const scrollLeftBtn = document.querySelector("#scroll_left");
-      window.addEventListener("scroll", onscroll);
+
       scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
-      onscroll();
+
+      scrollbar = new Scrollbar();
+      csb = new CustomScrollbar();
     }
 
     function timeout(ms) {
@@ -192,21 +306,12 @@
     }
 
     async function onScrollLeftBtn() {
-      const limit = document.body.offsetWidth;
-      const cur = window.scrollX > limit ? limit : window.scrollX;
-
-      window.scrollTo({
-        top: 0,
-        left: limit + 100,
-        behavior: 'smooth'
-      });
+      scrollbar.scrollByPos(scrollbar.getLimit() + 100);
     }
 
     function onscroll() {
-      const limit = document.body.offsetWidth, cur = window.scrollX > limit ? limit : window.scrollX;
-      const rate = cur / limit;
       // document.body.style.background = `rgba(50,200, 200, ${cur/limit})`;
-      document.body.style.background = `hsl(30,30%, ${100 - rate * 50}%)`;
+
     }
 
     window.addEventListener("load", onload);
