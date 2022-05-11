@@ -8,34 +8,36 @@
   <title>ljcu.cc</title>
 
   <style>
-    :root{
-      font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-      --title-size: 15vmin;
+    :root {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --title-size: 10vmin;
       --subtitle-size: 2vmin;
       letter-spacing: 0.2px;
     }
 
-    body{
-
-
+    body {
       padding: 0;
       margin: 0;
-
-      /* overflow-x: hidden; */
-
-      /* width: 100vw; */
-      padding: 10vmin;
+      display: flex;
+      flex-direction: row;
     }
 
-    body>.content{
+    .body {
+      padding: 10vmin;
+      min-width: 100vw;
+      display: inline-block;
+      padding-bottom: 0;
+    }
+
+    .body>.content {
+
       max-width: 100vw;
       box-sizing: padding-box;
-      min-height: 100vh;
+      /* min-height: 100vh; */
       /* border: 1px solid black; */
-      position: relative;
     }
 
-    .title{
+    .title {
       font-size: var(--title-size);
       font-style: italic;
       max-width: 30vw;
@@ -45,21 +47,21 @@
       transform: scale(1.2, 0.8);
     }
 
-    .links{
+    .links {
       margin-top: auto;
       font-size: var(--subtitle-size);
       max-width: 30vw;
-      box-sizing:border-box;
-      float:bottom;
+      box-sizing: border-box;
+      float: bottom;
       position: absolute;
       bottom: 0;
       margin-bottom: 5vmin;
     }
 
-    .links>*{
-      margin-bottom: 0.75vmin;
+    .links>* {
+      margin-bottom: 0.5vmin;
       text-transform: uppercase;
-      box-sizing:border-box;
+      box-sizing: border-box;
 
       cursor: pointer;
 
@@ -67,33 +69,74 @@
       transform: scale(1.2, 0.8);
     }
 
-    a{
+    a {
       display: block;
       color: black;
       text-decoration: none;
     }
 
-    .links>a:hover{
+    .links>a:hover {
       text-decoration: underline;
+    }
+
+    #section2 {
+      min-width: 50vw;
+      padding: 5vmin 10vmin;
+      font-size: 5vmin;
+      /* font-family: Helvetica, Arial, sans-serif; */
+    }
+
+    #setion2{
     }
   </style>
 </head>
 
 <body>
 
-<body>
-  <div class="content">
-    <a class="title" href="https://github.com/ljcucc">ljcucc</a>
-  
-    <div class="links">
-      <a href="https://ljcu.cc/knowledge_base" target="_blank" rel="noopener noreferrer">wiki</a>
-      <a href="https://github.com/ljcucc" target="_blank" rel="noopener noreferrer">github</a>
-      <a href="https://unsplash.com/ljcucc" target="_blank" rel="noopener noreferrer">unsplash</a>
-      <a href="https://instagram.com/ljcucc" target="_blank" rel="noopener noreferrer">instagram</a>
-      <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a>
-      <div style="margin-top: 60px;" title="this version is built in 2022 05 11">VER. 022_511</div>
+  <div class="body">
+    <div class="content">
+      <a class="title" href="https://github.com/ljcucc">ljcucc</a>
+
+      <div class="links">
+        <a href="https://ljcu.cc/knowledge_base" target="_blank" rel="noopener noreferrer">wiki</a>
+        <a href="https://github.com/ljcucc" target="_blank" rel="noopener noreferrer">github</a>
+        <a href="https://unsplash.com/ljcucc" target="_blank" rel="noopener noreferrer">unsplash</a>
+        <a href="https://instagram.com/ljcucc" target="_blank" rel="noopener noreferrer">instagram</a>
+        <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a>
+        <div style="margin-top: 60px;" title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
+      </div>
     </div>
   </div>
-  </body>
-  
-  </html>
+
+
+  <div id="section2">
+    I'm a student from Taiwan who love creative coding and discover things of digital platfor and discover things of digital platform.
+  </div>
+</body>
+
+<script>
+  (()=>{
+    function onload(){
+      const scrollLeftBtn = document.querySelector("scroll_left");
+      window.addEventListener("scroll", onscroll);
+      scrollLeftBtn.addEventListener("click", e=>{
+      });
+      onscroll();
+    }
+
+    function onScrollLeft(){
+      alert()
+    }
+
+    function onscroll(){
+      const limit = document.body.offsetWidth, cur = window.scrollX > limit? limit: window.scrollX;
+      const rate = cur/limit;
+      // document.body.style.background = `rgba(50,200, 200, ${cur/limit})`;
+      document.body.style.background = `hsl(${rate*50},30%, ${100-rate*50}%)`;
+    }
+
+    window.addEventListener("load", onload);
+  })();
+</script>
+
+</html>
