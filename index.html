@@ -176,7 +176,7 @@
           </div>
         </div>
         <!-- <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a> -->
-        <div title="this version is built in 2022 05 11" id="scroll_left">Scroll left →</div>
+        <a title="this version is built in 2022 05 11" id="scroll_left" href="#section2">Scroll left →</a>
       </div>
 
     </div>
@@ -194,27 +194,12 @@
 <script>
   (() => {
     function onload() {
-      const scrollLeftBtn = document.querySelector("#scroll_left");
-
-      scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
       window.addEventListener("scroll", onscroll);
-
       onscroll();
     }
 
     function timeout(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function onScrollLeftBtn() {
-      const limit = document.body.offsetWidth;
-      const cur = window.scrollX > limit ? limit : window.scrollX;
-
-      window.scrollTo({
-        top: 0,
-        left: limit + 100,
-        behavior: 'smooth'
-      });
     }
 
     function onscroll() {
