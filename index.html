@@ -23,9 +23,10 @@
                                   supported by Chrome, Edge, Opera and Firefox */
     }
 
-    body {
+    html, body {
       padding: 0;
       margin: 0;
+      scroll-behavior: smooth;
     }
 
     .global{
@@ -151,6 +152,8 @@
     }
 
   </style>
+
+  <script src="https://unpkg.com/smoothscroll-polyfill"></script>
 </head>
 
 <body>
@@ -195,6 +198,8 @@
 
       scrollLeftBtn.addEventListener("click", onScrollLeftBtn);
       window.addEventListener("scroll", onscroll);
+
+      onscroll();
     }
 
     function timeout(ms) {
