@@ -58,13 +58,21 @@
     def: function(...l){
       console.log("creating function...")
       return function(...args){
+        console.log("run func start")
         let listStore = JSON.stringify(l);
         console.log(listStore)
         let list = JSON.parse(listStore);
         var childVars = Object.assign({}, this.vars);
-        execute(list[1].map(e=>e), childVars);
+
+        for(let i in Object.keys(list[0]).map(Number)){
+          console.log("t1", args[i], this.vars);
+          childVars[list[0][i]] = convertValue(args[i] || "",this.vars);
+        }
+
+        let result = execute(list[1].map(e=>e), childVars);
         Object.assign(childVars, this.vars);
         Object.assign(this.vars, childVars);
+        return result;
       }.bind(this);
     },
     set,
@@ -108,22 +116,22 @@
     if(isVal((head = ast.shift() || ""))){
       ast.unshift(head)
       let result = convertValues(ast, vars);
-      console.log(result);
+      // console.log(result);
       return result;
     }else{
-      console.log("isn't value")
+      // console.log("isn't value")
     }
 
     // head is function name
-    console.log(head)
+    // console.log(head)
     if( head in valueConvertedFunctions){
       return valueConvertedFunctions[head](...execute(ast, vars));
     }else if(head in nonConvertFunctions){
       return nonConvertFunctions[head].bind({vars})(...ast);
     }else if(head in vars){
-      return vars[head](...execute(ast));
+      return vars[head](...execute(ast, vars));
     }
-    console.error("function not found");
+    console.error("function not found: ", head, vars);
   }
 
   function convertValue(val, vars){
@@ -168,6 +176,14 @@
 
     ( set webNL "<br>")
 
+    ( set blod 
+      (def (content) (joinl "<strong>" $content "</strong>" ""))
+    )
+
+    ( set div 
+      (def (body) (joinl "<div>" $body "</div>" ""))
+    )
+
     (set version (def () (print "version: wolf_lisp v0.1.0")))
 
     (set help (def () (
@@ -202,8 +218,17 @@
 
     ( set intro 
       (def () (
-      
-        (print "<strong>IT. Wolf</strong>")
+        (set limitedBox (def ( width height content) (joinl "<div style=\\"max-width:" $width ";height:" $height ";box-sizing:border-box;\\">" $content "</div>" "")))
+        (print 
+          ( div (joinl
+            (div (joinl 
+              (blod "@ljcucc") " = " (blod "l") "injason + "(blod "j") "ason + cucc" "")
+            )
+
+            ""
+            (limitedBox "1000px" "auto" "Hi, I'm <stron>IT. Wolf</strong> welcome to my home site. here's some of my linktree or just look around... feel free to typing some commands under the page ;)" )
+            "<br>"
+          )))
 
     (print 
       (img "./icon.png" $iconSize $iconSize $iconStyle))
