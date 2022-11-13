@@ -204,6 +204,8 @@
     (set version (def () (print "version: wolf_lisp v0.1.0")))
 
     (set help (def () (
+      (set li (def (cont) (joinl "<li>" $cont "</li>" "")))
+      (set ul (def (cont) (joinl "<ul>" $cont "</ul>" "")))
       (print (joinl 
         "<div>"
         "[ helper ]"
@@ -213,21 +215,27 @@
         ""
         "functions/commands:"
         ""
-        "* ( intro ) - reprint intro"
-        "* ( clear ) - clear screen"
-        "* ( print ) - append HTML strings to terminal"
-        "* ( hint ) - generate hint HTML string"
-        "* ( img ) - generate img tag HTML string"
-        "* ( join (*list) *string ) - add string between items"
-        "* ( joinl ...*list *string ) - inline version of (join) "
-        "* ( set name value ) - set scoped variable"
-        "* ( reload ) - reload page"
-        "* ( help ) - diplay help"
-        "* ( version ) - display version"
+        (ul
+          (joinl (li "( intro ) - print intro")
+          (li "( clear ) - clear screen" )
+          (li "( print ) - append HTML strings to terminal" )
+          (li "( hint ) - generate hint HTML string" )
+          (li "( img ) - generate img tag HTML string" )
+          (li "( join (*list) *string ) - add string between items" )
+          (li "( joinl ...*list *string ) - inline version of (join) " )
+          (li "( set name value ) - set scoped variable" )
+          (li "( if ...*con_or_then *else) - value in (then) will be returned. etc. (if con (then)) (if con (then) (else)) (if con (then) con (then) ... *(else is optinoal)) " )
+          (li "( def (...args) (todo)) - define a function object, will return a function object")
+          (li "( help ) - diplay help" )
+          (li "( version ) - display version" ) "" )
+        )
         ""
         "shortcuts: (keyboard only)"
         ""
-        "* Ctrl+L - Clear screen"
+        (ul (joinl 
+          (li "Ctrl+L - Clear screen")
+          (li "Ctrl+U - Clear line")
+        ""))
         "</div>"
         $webNL
       )) ; print joinl
@@ -276,9 +284,14 @@
 
   let promptInput; 
   (promptInput = document.querySelector("#prompt>input")).addEventListener("keydown", e=>{
-    if(e.ctrlKey == true && e.key == "l"){
-      promptInput.value = "";
-      clear();
+    if(e.ctrlKey == true){
+      if(e.key == "l"){
+        // promptInput.value = "";
+        clear();
+      }
+      if (e.key == "u") {
+        promptInput.value = "";
+      }
       return;
     }
 
