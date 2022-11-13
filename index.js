@@ -32,12 +32,12 @@
     canvas.innerHTML = '<div class="hint">All contents cleared</div>';
   }
   const set = function( name, value ){
-    console.log(this)
-    this.global_variables[name] = value;
+    console.log(this, [value])
+    this.vars[name] = convertValue(value, this.vars);
     console.log("set", name, value);
   };
 
-  const native_func_call = {
+  const valueConvertedFunctions = {
     "joinl": (...list)=>list.slice(0,-1).join(list.slice(-1)),
     "join": (...list)=>list.slice(0,-1).join(list.slice(-1)),
 
@@ -49,20 +49,25 @@
     img,
     hint,
 
-    l: (...list)=>list,
-
-    set,
+    // l: (...list)=>list,
 
     padding,
   }
 
-  var intergate_func_call = {
-    def: function(...list){
+  var nonConvertFunctions = {
+    def: function(...l){
       console.log("creating function...")
       return function(...args){
-        print(list)
-      }
-    }
+        let listStore = JSON.stringify(l);
+        console.log(listStore)
+        let list = JSON.parse(listStore);
+        var childVars = Object.assign({}, this.vars);
+        execute(list[1].map(e=>e), childVars);
+        Object.assign(childVars, this.vars);
+        Object.assign(this.vars, childVars);
+      }.bind(this);
+    },
+    set,
   }
 
   // var global_variables = {};
@@ -78,102 +83,91 @@
     .map(item=>item[0]=="\""?item.replace(/!!WHITESPACE!!/g, " "): item);
   }
 
-  async function parse(code, index=0, global_variables={}, intergrate_call=false) {
-    let param_count = 0;
-
-    var func_call = native_func_call.l;
-    var params = [];
-
-    for (; index < code.length; index++, param_count++) {
-      let cur = code[index];
-
-      // console.log(cur, index);
-      if (cur == "(") {
-        var { index, value } = await parse(code, index + 1, global_variables, intergrate_call);
-        // console.log("returned", index, value, "to", func_name);
-        params.push(value);
+  function parse(code) {
+    var stack = [];
+    for (; code.length > 0; stack.push(code.shift())) {
+      // console.log(code[0], stack)
+      if (code[0] == "(") {
+        code.shift(); // remove (
+        code.unshift(parse(code));
         continue;
-      } 
-
-      if (cur == ")") {
-        // console.log("calling", func_name, params);
-        // console.log(func_call.bind({x: 10}));
-        return {
-          index: index,
-          value: func_call.bind({
-            global_variables
-          })(...params)
-        };
       }
-
-      if (param_count == 0 && !is_val(cur) && !intergrate_call) {
-        let func_name = cur;
-        
-        var {func_call, intergrate_call} = func_execution(func_name, native_func_call, intergate_func_call, global_variables);
-
-        continue;
-      } else if(param_count == 0){
-        global_variables = Object.assign({}, global_variables);
+      if (code[0] == ")") {
+        code.shift()
+        return stack;
       }
-      
-      params.push(con_value(cur, global_variables));
-      console.log(param_count, cur);
     }
-
-    return intergrate_call?params:{index: index+1, value: null, params, global_variables};
+    return stack;
   }
 
-  function func_execution(func_name, native_func_call, intergate_func_call, global_variables) {
-    let func_call, intergrate_call;
-    if (func_name in native_func_call) {
-      func_call = native_func_call[func_name];
+  function execute(ast, vars={}) {
+    console.log(ast);
+    let isVal = (val)=>(val[0] == '"' || val[0] == "$" || !isNaN(val) || val instanceof Array);
+    var head;
+
+    if(isVal((head = ast.shift() || ""))){
+      ast.unshift(head)
+      let result = convertValues(ast, vars);
+      console.log(result);
+      return result;
+    }else{
+      console.log("isn't value")
     }
-    else if (func_name in intergate_func_call) {
-      func_call = intergate_func_call[func_name];
-      intergrate_call = true
-    } else if (func_name in global_variables) {
-      func_call = global_variables[func_name];
-      console.log("var func")
+
+    // head is function name
+    console.log(head)
+    if( head in valueConvertedFunctions){
+      return valueConvertedFunctions[head](...execute(ast, vars));
+    }else if(head in nonConvertFunctions){
+      return nonConvertFunctions[head].bind({vars})(...ast);
+    }else if(head in vars){
+      return vars[head](...execute(ast));
     }
-    return {func_call, intergrate_call};
+    console.error("function not found");
   }
 
-  function is_val(val){
-    return (val[0] == '"' || val[0] == "$" || !isNaN(val));
-  }
-
-  function con_value(val, global_variables){
-    console.log("con_val", val);
-    if(val[0] == "\"" && val[val.length-1] == "\""){
-      return val.slice(1, -1);
-    }
-
-    if(val[0] == "$"){
-      console.log("get", val, val.slice(1));
-      return global_variables[val.slice(1)] || "";
-    }
-
-    if(!isNaN(val)){
-      return Number(val);
-    }
+  function convertValue(val, vars){
+      if (val[0] == "\"" && val[val.length - 1] == "\"") {
+        return val.slice(1, -1);
+      }
+      if(!isNaN(val)){
+        return (val);
+      }
+      if (val[0] == "$") {
+        console.log("get", val, val.slice(1), vars);
+        return (vars[val.slice(1)] || "");
+      }
+      if(val instanceof Array){
+        return (execute(val, vars));
+      }
 
     return val;
+  }
+
+  function convertValues(arr, vars){
+    var stack = [];
+    for (;arr.length > 0; stack.push(arr.shift())) {
+      let val = arr.shift();
+      let ret = convertValue(val, vars);
+      if(val != ret){
+        arr.unshift(ret);
+      }
+    }
+    return stack;
   }
 
   let vars = {};
 
   function init(){
-    parse(tokenize(`
+   const tokens = tokenize(`
 
     ( set title "ljcucc" )
 
     ( set iconStyle "border-radius: 100%;")
     ( set iconSize 200)
 
-    ( set hello 
-      (def () 
-        (print "hello world")) ;def
-    ) ;set
+    ( set intro 
+      (def () (
 
     (print 
       (img "./icon.png" $iconSize $iconSize $iconStyle))
@@ -186,11 +180,16 @@
       "<div style=\\"height:4px;\\"></div>"
       ))
     (print (hint "hint: type \"help\" to get all command, type \"tutor\" to enter tutorial."))
-    `, undefined, vars)).then(e => {
-      let { global_variables } = e;
-      vars = global_variables
-      console.log(vars);
-    });
+
+      ))
+    ) ;set
+
+    (intro)
+
+    `);
+
+    execute(parse(tokens), vars);
+    console.log(vars)
 
   }
 
@@ -210,10 +209,8 @@
     let code = promptInput.value;
     promptInput.value = "";
 
-    parse(tokenize(`(${code})`), undefined, vars).then((e)=>{
-      const {params} = e;
-      const printData = (p)=>`(${typeof p == "array"?printData(p):p})`
-      print(hint(`returned: ${printData(params)}`))
-    });
+    const { params } = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
+    const printData = (p) => `(${typeof p == "array" ? printData(p) : p})`
+    print(hint(`returned: ${printData(params)}`))
   });
 })();
