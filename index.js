@@ -57,6 +57,11 @@
       return convertValue(elseCon);
     },
 
+    "+": (...list)=>list.map(Number).reduce((pre, cur)=> pre + cur),
+    "-": (...list)=>list.reduce((pre, cur)=> pre - cur),
+    "*": (...list)=>list.reduce((pre, cur)=> pre * cur),
+    "/": (...list)=>list.reduce((pre, cur)=> pre / cur),
+
     print,
     clear,
 

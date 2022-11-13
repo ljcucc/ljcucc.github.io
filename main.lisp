@@ -15,12 +15,14 @@
  ( set div 
        (def (body) (joinl "<div>" $body "</div>" ""))
        )
+ (set limitedBox (def ( width height content) (joinl "<div style=\"max-width:" $width ";height:" $height ";box-sizing:border-box;\">" $content "</div>" "")))
+
+ (set li (def (cont) (joinl "<li>" $cont "</li>" "")))
+ (set ul (def (cont) (joinl "<ul>" $cont "</ul>" "")))
 
  (set version (def () (print "version: wolf_lisp v0.1.0")))
 
  (set help (def () (
-                    (set li (def (cont) (joinl "<li>" $cont "</li>" "")))
-                    (set ul (def (cont) (joinl "<ul>" $cont "</ul>" "")))
                     (print (joinl 
                              "<div>"
                              "[ helper ]"
@@ -42,8 +44,13 @@
                                       (li "( if ...*con_or_then *else) - value in (then) will be returned. etc. (if con (then)) (if con (then) (else)) (if con (then) con (then) ... *(else is optinoal)) " )
                                       (li "( def (...args) (todo)) - define a function object, will return a function object")
                                       (li "( help ) - diplay help" )
-                                      (li "( version ) - display version" ) "" )
-                               )
+                                      (li "( version ) - display version" ) 
+                                      (li "( + ...valeus) - Addition" ) 
+                                      (li "( - ...valeus) - Subtraction. etc 1 - 2 - 3 === ( - 1 2 3 )" ) 
+                                      (li "( * ...valeus) - Multiplication" ) 
+                                      (li "( / ...valeus) - Division. etc  1 / 2 / 3 === ( / 1 2 3 )" ) "" ) )
+
+                               
                              ""
                              "shortcuts: (keyboard only)"
                              ""
@@ -58,20 +65,18 @@
 
  ( set intro 
        (def () (
-                (set limitedBox (def ( width height content) (joinl "<div style=\\"max-width:" $width ";height:" $height ";box-sizing:border-box;\\">" $content "</div>" "")))
                 (print 
                   ( div (joinl
                           (div (joinl 
-                                 (blod "@ljcucc") " = " (blod "l") "injason + "(blod "j") "ason + cucc" "")
+                                 (blod "@ljcucc") " = linjason + cucc" "")
                                )
 
                           ""
-                          (limitedBox "1000px" "auto" "Hi, I'm <stron>IT. Wolf</strong> welcome to my home site. here's some of my linktree or just look around... feel free to typing some commands under the page ;)" )
+                          (img "./icon.png" $iconSize $iconSize $iconStyle)
+                          ""
+                          (limitedBox "800px" "auto" "Hi, I'm <stron>IT. Wolf</strong> welcome to my home site. here's some of my linktree or just look around... feel free to typing some commands under the page ;)" )
                           "<br>"
                           )))
-
-                (print 
-                  (img "./icon.png" $iconSize $iconSize $iconStyle))
 
                 (print (joinl
                          (link "Twitter" "https://github.com/ljcucc")
@@ -85,7 +90,7 @@
                 ))
        ) ;set
 
-                (intro)
+ (intro)
 
 
-                )
+ )
