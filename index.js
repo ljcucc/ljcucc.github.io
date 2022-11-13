@@ -16,8 +16,8 @@
   const padding = (px)=>`padding: ${px}px`;
 
   const box = (str, width="auto", height="auto", style)=>`<div style="${style}">${str}</div>`;
-  const link = (title, link, new_blank)=>`<a href="${link}" ${new_blank? 'target="_blank"' : ""}>${title}</a>`;
-  const img = (link, width=500, height=500, style="")=>`<img src="${link}" width="${width}" height="${height}" style="${style}"/> <div class="hint">${link}</div>`
+  const link = (title, link, new_blank)=>`<a href="${link}" target="_blank">${title}</a>`;
+  const img = (link, width=500, height=500, style="")=>`<img src="${link}" width="${width}" height="${height}" style="${style}"/>`
   const hint = (content)=>`<div class="hint">${content}</div>`
 
   const token = (t=3)=> t>0?token(t-1)+Math.random().toString(36).substr(2):"";
@@ -166,20 +166,56 @@
     ( set iconStyle "border-radius: 100%;")
     ( set iconSize 200)
 
+    ( set webNL "<br>")
+
+    (set version (def () (print "version: wolf_lisp v0.1.0")))
+
+    (set help (def () (
+      (print (joinl 
+        "<div>"
+        "[ helper ]"
+        ""
+        "\\"Wolf interactive terminal\\""
+        "is a terminal powered by custom scripting language which simular to lisp syntax."
+        ""
+        "functions/commands:"
+        ""
+        "* ( intro ) - reprint intro"
+        "* ( clear ) - clear screen"
+        "* ( print ) - append HTML strings to terminal"
+        "* ( hint ) - generate hint HTML string"
+        "* ( img ) - generate img tag HTML string"
+        "* ( join (*list) *string ) - add string between items"
+        "* ( joinl ...*list *string ) - inline version of (join) "
+        "* ( set name value ) - set scoped variable"
+        "* ( reload ) - reload page"
+        "* ( help ) - diplay help"
+        "* ( version ) - display version"
+        ""
+        "shortcuts: (keyboard only)"
+        ""
+        "* Ctrl+L - Clear screen"
+        "</div>"
+        $webNL
+      )) ; print joinl
+    )))
+
     ( set intro 
       (def () (
+      
+        (print "<strong>IT. Wolf</strong>")
 
     (print 
       (img "./icon.png" $iconSize $iconSize $iconStyle))
+
     (print (joinl
-      (link "Twitter" "https://github.com/ljcucc" 1)
-      (link "Fedi (misskey)" "https://social.ljcu.cc" 1)
-      (link "Wiki" "https://wiki.ljcu.cc" 1)
-      (link "Github" "https://github.com/ljcucc" 1)
+      (link "Twitter" "https://github.com/ljcucc")
+      (link "Wiki" "https://wiki.ljcu.cc")
+      (link "Github" "https://github.com/ljcucc")
       (link "Unsplash" "https://unsplash.com/@ljcucc")
       "<div style=\\"height:4px;\\"></div>"
       ))
-    (print (hint "hint: type \"help\" to get all command, type \"tutor\" to enter tutorial."))
+    (print (hint "hint: type \\"help\\" to get all commands."))
 
       ))
     ) ;set
