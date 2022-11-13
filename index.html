@@ -14,203 +14,123 @@
       --subtitle-size: 2vh;
       letter-spacing: 0.2px;
 
-      -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Old versions of Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
     }
 
-    html, body {
+    html,
+    body {
       padding: 0;
       margin: 0;
       scroll-behavior: smooth;
     }
 
-    .global{
-      display: flex;
-      flex-direction: row;
-    }
-
-    .body {
-      padding: 10vmin;
+    .content {
+      /* background: url(./cover.jpg) center / cover; */
       min-width: 100vw;
-      display: inline-block;
-      padding-bottom: 0;
-      /* height: 100vh; */
+      min-height: 100vh;
+      /* background-position: cover / cover; */
     }
 
-    .body>.content {
-
-      max-width: 100vw;
-      box-sizing: padding-box;
-      /* min-height: 100vh; */
-      /* border: 1px solid black; */
-    }
-
-    .title {
-      font-size: var(--title-size);
-      font-style: italic;
-      max-width: 30vw;
-      box-sizing: padding-box;
-      margin-right: 0;
-      transform-origin: top left;
-      transform: scale(1.2, 0.8);
-    }
-
-    .links {
-      margin-top: auto;
-      font-size: var(--subtitle-size);
-      max-width: 30vw;
-      box-sizing: border-box;
-      float: bottom;
-      position: absolute;
-      bottom: 0;
-      margin-bottom: 5vmin;
-      margin-bottom: 10vmin;
-    }
-
-    .links>*,
-    .link {
-      margin-bottom: 0.5vmin;
-      text-transform: uppercase;
+    .window {
+      width: 100vw;
+      height: 100vh;
+      background: #424242;
+      font-family: monospace;
+      padding: 32px;
       box-sizing: border-box;
 
-      cursor: pointer;
+      font-size: 16px;
 
-      transform-origin: top left;
-      transform: scale(1.2, 0.8);
+      overflow-y: auto;
     }
 
-    a {
-      display: block;
-      color: black;
-      text-decoration: none;
+    #terminal {}
+
+    #prompt {
+      color: white;
+      font-family: monospace;
+      box-sizing: border-box;
+
+      display: flex;
+      align-items: center;
     }
 
-    .links>a:hover {
-      text-decoration: underline;
+    #prompt>input {
+      background: transparent;
+      padding: 16px;
+      color: white;
+      font-family: monospace;
+      outline: none;
+      border: none;
+      width: 100%;
+      font-size: 16px;
     }
 
-    #twitter_menu~label {
-      cursor: pointer;
+    .block {
+      margin-bottom: 16px;
+      color:white;
+
+      display: flex;
+      flex-direction: column;
     }
 
-    #section2 {
-      min-width: 80vw;
-      padding: 5vmin 10vmin;
-      font-size: 5vmax;
-      /* font-family: Helvetica, Arial, sans-serif; */
+    .block>*{
+      color:white;
     }
 
-    #twitter_menu:hover~.menu {
-      display: block;
-      opacity: 0;
-      left: calc(15vw - 20px);
+    .block::after{
+      content:"hi";
+      color:transparent;
+      border-bottom: 3px solid rgba(255,255,255,0.15);
+      max-width:500px;
     }
 
-    #twitter_menu:hover~.menu>*:nth-child(1) {
-      margin-left: -2px;
+    .block>a {
+      color: white;
     }
 
-
-    #twitter_menu {
-      display: none;
+    .hint{
+      opacity: 0.35;
+      color:white;
     }
 
-    #twitter_menu:checked~.menu {
-      display: block;
-      opacity: 1;
+    .heading-1 {
+      padding: 15vmin;
+      font-size: 10vmin;
+      /* color: rgba(0,0,0,0.3); */
+      /* color: white; */
+      /* color: black; */
+      color: #0742f2;
+      /* mix-blend-mode:difference; */
     }
-
-    #twitter_menu:hover:checked~.menu {
-      left: 15vw;
-    }
-
-    #twitter_menu:hover:checked~.menu>*:nth-child(1) {
-      margin-left: 0;
-    }
-
-    #twitter_menu~.menu>*:nth-child(1) {
-      transition: all 0.35s;
-    }
-
-    .menu {
-      display: none;
-      opacity: 0;
-      transition: all 0.35s;
-      position: absolute;
-      left: 15vw;
-      top: 0;
-      width: 500px;
-    }
-
-    #scroll_left{
-      margin-top: 5vmin;
-    }
-
   </style>
 
   <script src="https://unpkg.com/smoothscroll-polyfill"></script>
 </head>
 
 <body>
-<div class="global">
-  <div class="body">
-    <div class="content">
-      <a class="title" href="https://github.com/ljcucc">ljcucc</a>
-
-      <div class="links twitter_menu_container">
-        <a href="https://wiki.ljcu.cc" target="_blank" rel="noopener noreferrer">wiki</a>
-        <a href="https://github.com/ljcucc" target="_blank" rel="noopener noreferrer">github</a>
-        <a href="https://unsplash.com/ljcucc" target="_blank" rel="noopener noreferrer">unsplash</a>
-        <a href="https://instagram.com/ljcucc" target="_blank" rel="noopener noreferrer">instagram</a>
-        <div class="link">
-          <input type="checkbox" id="twitter_menu">
-          <label for="twitter_menu">twitter</label>
-          <div class="menu">
-            <a href="https://twitter.com/the_ITWolf" target="_blank" rel="noopener noreferrer">online furson</a>
-            <a href="https://twitter.com/ljcucc" target="_blank" rel="noopener noreferrer">real person</a>
-          </div>
-        </div>
-        <!-- <a href="https://twitter/the_itwolf" target="_blank" rel="noopener noreferrer">twitter</a> -->
-        <a title="this version is built in 2022 05 11" id="scroll_left" href="#section2">Scroll left →</a>
-      </div>
-
+  <div class="window">
+    <div id="terminal">
     </div>
-
+    <div id="prompt">
+      $
+      <input type="text"></input>
+    </div>
   </div>
 
-
-  <div id="section2">
-    I'm a student from Taiwan who love creative coding and discover things.
-  </div>
-</div>
-
+  <script type="module" src="index.js"></script>
 </body>
-
-<script>
-  (() => {
-    function onload() {
-      window.addEventListener("scroll", onscroll);
-      onscroll();
-    }
-
-    function timeout(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function onscroll() {
-      const limit = document.body.offsetWidth, cur = window.scrollX > limit ? limit : window.scrollX;
-      const rate = cur / limit;
-      // document.body.style.background = `rgba(50,200, 200, ${cur/limit})`;
-      document.body.style.background = `hsl(30,30%, ${100 - rate * 50}%)`;
-    }
-
-    window.addEventListener("load", onload);
-  })();
-</script>
 
 </html>
