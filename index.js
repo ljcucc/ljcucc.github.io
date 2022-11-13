@@ -41,6 +41,22 @@
     "joinl": (...list)=>list.slice(0,-1).join(list.slice(-1)),
     "join": (...list)=>list.slice(0,-1).join(list.slice(-1)),
 
+    if: function(...list){
+      if(list.length < 2) throw "error";
+      let elseCon  = list.length%2 == 1 ? list.pop() : [];
+      console.log(elseCon)
+      for(;list.length > 0;){
+        let con = list.shift(),
+        thenAct = list.shift();
+
+        if(convertValue(con)){
+          console.log("con", con, thenAct, list)
+          return convertValue(thenAct, this.vars);
+        }
+      }
+      return convertValue(elseCon);
+    },
+
     print,
     clear,
 
@@ -139,7 +155,7 @@
         return val.slice(1, -1);
       }
       if(!isNaN(val)){
-        return (val);
+        return Number(val);
       }
       if (val[0] == "$") {
         console.log("get", val, val.slice(1), vars);
@@ -157,9 +173,10 @@
     for (;arr.length > 0; stack.push(arr.shift())) {
       let val = arr.shift();
       let ret = convertValue(val, vars);
-      if(val != ret){
+      if(val != ret)
         arr.unshift(ret);
-      }
+      else
+        arr.unshift(val);
     }
     return stack;
   }
@@ -270,8 +287,8 @@
     let code = promptInput.value;
     promptInput.value = "";
 
-    const { params } = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
+    const result = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
     const printData = (p) => `(${typeof p == "array" ? printData(p) : p})`
-    print(hint(`returned: ${printData(params)}`))
+    print(hint(`returned: ${printData(result)}`))
   });
 })();
