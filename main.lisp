@@ -30,7 +30,7 @@
                              "\"Wolf interactive terminal\""
                              "is a terminal powered by custom scripting language which simular to lisp syntax."
                              ""
-                             "functions/commands:"
+                             "basic functions/commands:"
                              ""
                              (ul
                                (joinl (li "( intro ) - print intro")
@@ -50,6 +50,20 @@
                                       (li "( * ...valeus) - Multiplication" ) 
                                       (li "( / ...valeus) - Division. etc  1 / 2 / 3 === ( / 1 2 3 )" ) "" ) )
 
+                             "p5.sound"
+
+                             (ul (joinl 
+                                   (li "( notes ...notes ) - play note in loop and return p5.SoundLoop object. etc (notes 50 60)")
+                                   ""))
+                             
+                             "Flags:"
+                             ""
+                             "set variables to enable or disable function or feature. boolean with value 1 or 0."
+
+                             (ul (joinl 
+                                   (li "_NO - No output flag (boolean), default:0,  all output will store to buffer first, run (pprint) to pull out buffer, (pclear) to clear without print it.")
+                                   (li "_NRTN - No return hint (boolen) default:0")
+                                   ""))
                                
                              ""
                              "shortcuts: (keyboard only)"

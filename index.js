@@ -71,6 +71,8 @@
 
     print,
     clear,
+    pprint: endOfPrint,
+    pclear: ()=> printBuffer="",
 
     box,
     link,
@@ -80,6 +82,25 @@
     // l: (...list)=>list,
 
     padding,
+
+
+    notes: function (...notePattern) {
+      var soundLoop,
+      p5js = new p5(function (p) {
+        p.setup = function () {
+          p.noCanvas();
+          let synth = new p5.MonoSynth();
+          let soundLoop = new p5.SoundLoop((timeFromNow) => {
+            let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
+            let note = p.midiToFreq(notePattern[noteIndex]);
+            synth.play(note, 0.5, timeFromNow);
+            // background(noteIndex * 360 / notePattern.length, 50, 100);
+          },0.2);
+          soundLoop.start();
+        }
+      });
+      return {soundLoop, p5js};
+    },
   }
 
 function defun(...l){
@@ -230,7 +251,9 @@ function defun(...l){
 
     const result = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
     const printData = (p) => `(${typeof p == "array" ? printData(p) : p})`
-    print(hint(`returned: ${printData(result)}`))
-    endOfPrint();
+    if(!vars["_NRTN"])
+      print(hint(`returned: ${printData(result)}`))
+    if(!vars["_NO"])
+      endOfPrint();
   });
 })();
