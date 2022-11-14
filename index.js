@@ -19,7 +19,10 @@ import "/src/sounds.js";
     printBuffer = "";
     console.log(str);
     const canvas = document.querySelector("#terminal");
-    canvas.innerHTML += `<div class="block">${str}</div>`;
+    const ele = document.createElement("div");
+    ele.classList.add("block");
+    ele.innerHTML = str;
+    canvas.appendChild(ele);
   }
   
   const clear = ()=>{
@@ -74,7 +77,11 @@ import "/src/sounds.js";
 
     notes: function (...notes) {
       console.log(notes)
-      print(`<sound-loop notes="${JSON.stringify(notes.map(Number))}"></sound-loop>`)
+      var soundLoop = document.createElement("sound-loop");
+      soundLoop.classList.add("block");
+      document.querySelector("#terminal").appendChild(soundLoop);
+      soundLoop.setAttribute("notes",JSON.stringify(notes.map(Number)));
+      // print(`<sound-loop notes="${JSON.stringify(notes.map(Number))}"></sound-loop>`)
       // var soundLoop,
       // p5js = new p5(function (p) {
       //   p.setup = function () {

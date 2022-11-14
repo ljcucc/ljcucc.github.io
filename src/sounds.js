@@ -33,7 +33,7 @@ class SoundLoop extends LitElement {
           synth.play(note, 0.5, timeFromNow);
           // background(noteIndex * 360 / notePattern.length, 50, 100);
         }, 0.2);
-        // that._soundLoop.start();
+        that._soundLoop.start();
       }
     });
   }
@@ -52,7 +52,7 @@ class SoundLoop extends LitElement {
   static properties = {
     notes: {type: Array},
     _play: {type: Boolean},
-    // _soundLoop: {type: Object},
+    _soundLoop: {type: Object},
     _noteIndex: {state: true},
   };
 
