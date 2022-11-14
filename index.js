@@ -1,16 +1,4 @@
-// Copyright 2022 ljcucc
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+import "/src/sounds.js";
 
 (function(){
   const padding = (px)=>`padding: ${px}px`;
@@ -84,22 +72,24 @@
     padding,
 
 
-    notes: function (...notePattern) {
-      var soundLoop,
-      p5js = new p5(function (p) {
-        p.setup = function () {
-          p.noCanvas();
-          let synth = new p5.MonoSynth();
-          let soundLoop = new p5.SoundLoop((timeFromNow) => {
-            let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
-            let note = p.midiToFreq(notePattern[noteIndex]);
-            synth.play(note, 0.5, timeFromNow);
-            // background(noteIndex * 360 / notePattern.length, 50, 100);
-          },0.2);
-          soundLoop.start();
-        }
-      });
-      return {soundLoop, p5js};
+    notes: function (...notes) {
+      console.log(notes)
+      print(`<sound-loop notes="${JSON.stringify(notes.map(Number))}"></sound-loop>`)
+      // var soundLoop,
+      // p5js = new p5(function (p) {
+      //   p.setup = function () {
+      //     p.noCanvas();
+      //     let synth = new p5.MonoSynth();
+      //     let soundLoop = new p5.SoundLoop((timeFromNow) => {
+      //       let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
+      //       let note = p.midiToFreq(notePattern[noteIndex]);
+      //       synth.play(note, 0.5, timeFromNow);
+      //       // background(noteIndex * 360 / notePattern.length, 50, 100);
+      //     },0.2);
+      //     soundLoop.start();
+      //   }
+      // });
+      // return {soundLoop, p5js};
     },
   }
 
