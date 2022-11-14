@@ -22,14 +22,21 @@
 
   const token = (t=3)=> t>0?token(t-1)+Math.random().toString(36).substr(2):"";
 
+  var printBuffer = "";
   const print = function(str){
+    printBuffer += str;
+  }
+  function endOfPrint(){
+    const str = printBuffer;
+    printBuffer = "";
     console.log(str);
     const canvas = document.querySelector("#terminal");
     canvas.innerHTML += `<div class="block">${str}</div>`;
   }
+  
   const clear = ()=>{
     const canvas = document.querySelector("#terminal");
-    canvas.innerHTML = '<div class="hint">All contents cleared</div>';
+    canvas.innerHTML = '<div class="block"><div class="hint"> All contents cleared</div></div>';
   }
   const set = function( name, value ){
     console.log(this, [value])
@@ -196,8 +203,8 @@ function defun(...l){
    const tokens = tokenize(await (await fetch("./main.lisp")).text());
 
     execute(parse(tokens), vars);
-    console.log(vars)
-
+    console.log(vars);
+    endOfPrint();
   }
 
   window.addEventListener("load", init);
@@ -224,5 +231,6 @@ function defun(...l){
     const result = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
     const printData = (p) => `(${typeof p == "array" ? printData(p) : p})`
     print(hint(`returned: ${printData(result)}`))
+    endOfPrint();
   });
 })();

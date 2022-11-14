@@ -59,9 +59,40 @@
 
       /* overflow-y: auto; */
     }
+    #terminal {
+      padding: 10vmin;
+    }
 
+    @media screen and  (min-width: 1200px) {
+      
     #terminal {
       padding: 64px;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    #terminal>.block:last-child{
+      height: 100vh;
+      max-height: 100vh;
+      width: 60vmin;
+      max-width: 60vmin;
+      margin-left: 0;
+      font-size: 32px;
+      /* margin-bottom: 100px; */
+    }
+
+    #terminal>.block:nth-last-child(2){
+      margin-top: -100vh;
+      /* transition: all 0.35s; */
+    }
+
+    #terminal>.block{
+      width: 40vmin;
+      max-width: 40vmin;
+      margin-left: auto;
+      font-size:18px;
+      /* transition: all 0.35s; */
+    }
     }
 
     #prompt {
@@ -72,8 +103,10 @@
       display: flex;
       align-items: center;
 
-      position: sticky;
+      position: fixed;
       bottom: 0;
+      left: 0;
+      right: 0;
       padding-left: 32px;
       background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(10px);
@@ -96,6 +129,7 @@
       font-style: italic;
     }
 
+
     .block {
       margin-bottom: 16px;
       color: #424224;
@@ -112,10 +146,10 @@
       content: "hi";
       color: transparent;
       border-bottom: 3px solid rgba(0, 0, 0, 0.15);
-      max-width: 500px;
+      /* max-width: 500px; */
     }
 
-    .block>a {
+    a {
       color: #646464;
     }
 

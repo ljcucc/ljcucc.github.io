@@ -75,17 +75,20 @@
                           (img "./icon.png" $iconSize $iconSize $iconStyle)
                           ""
                           (limitedBox "800px" "auto" "Hi, I'm <stron>IT. Wolf</strong> welcome to my home site. here's some of my linktree or just look around... feel free to typing some commands under the page ;)" )
-                          "<br>"
-                          )))
 
-                (print (joinl
+
                          (link "Twitter" "https://github.com/ljcucc")
                          (link "Wiki" "https://wiki.ljcu.cc")
                          (link "Github" "https://github.com/ljcucc")
                          (link "Unsplash" "https://unsplash.com/@ljcucc")
                          "<div style=\"height:4px;\"></div>"
-                         ))
-                (print (hint "hint: type \"help\" to get all commands."))
+
+                         (hint "hint: type \"help\" to get all commands.")
+
+                          "<br>" ; split
+
+                          )))
+
 
                 ))
        ) ;set
