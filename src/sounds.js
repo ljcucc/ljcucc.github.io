@@ -52,7 +52,7 @@ class SoundLoop extends LitElement {
   static properties = {
     notes: {type: Array},
     _play: {type: Boolean},
-    _soundLoop: {type: Object},
+    // _soundLoop: {type: Object},
     _noteIndex: {state: true},
   };
 
@@ -65,6 +65,11 @@ class SoundLoop extends LitElement {
       console.log("restart");
       this._soundLoop.start();
     }
+  }
+
+  disconnectedCallback(){
+    super.disconnectedCallback();
+    this._soundLoop.stop();
   }
 
   render(){
