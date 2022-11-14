@@ -16,6 +16,7 @@ import "/src/sounds.js";
   }
   function endOfPrint(){
     const str = printBuffer;
+    if(str.trim() == "")return;
     printBuffer = "";
     console.log(str);
     const canvas = document.querySelector("#terminal");
@@ -248,8 +249,13 @@ function defun(...l){
 
     const result = execute(parse(tokenize(`(${code})`), undefined, vars), vars);
     const printData = (p) => `(${typeof p == "array" ? printData(p) : p})`
-    if(!vars["_NRTN"])
-      print(hint(`returned: ${printData(result)}`))
+    if(!vars["_NRTN"]){
+      if(result.filter(e=>e!=undefined).length != 0){
+        print(hint(`returned: ${printData(result)}`))
+        console.log(result)
+      }else{
+      }
+    }
     if(!vars["_NO"])
       endOfPrint();
   });
