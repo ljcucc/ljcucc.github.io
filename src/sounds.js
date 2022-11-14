@@ -33,7 +33,7 @@ class SoundLoop extends LitElement {
           synth.play(note, 0.5, timeFromNow);
           // background(noteIndex * 360 / notePattern.length, 50, 100);
         }, 0.2);
-        that._soundLoop.start();
+        // that._soundLoop.start();
       }
     });
   }
@@ -52,17 +52,19 @@ class SoundLoop extends LitElement {
   static properties = {
     notes: {type: Array},
     _play: {type: Boolean},
-    _soundLoop: {type: Object},
+    // _soundLoop: {type: Object},
     _noteIndex: {state: true},
   };
 
-  stop(){
-    console.log("Stoping...");
-    this._soundLoop.stop();
-  }
-
-  start(){
-    this._soundLoop.start();
+  switch(){
+    if (this._soundLoop.isPlaying) {
+      console.log("stoped")
+      this._soundLoop.stop();
+    } else {
+      // start the loop
+      console.log("restart");
+      this._soundLoop.start();
+    }
   }
 
   render(){
@@ -72,8 +74,7 @@ class SoundLoop extends LitElement {
       <p>
       loop [ ${ this.notes.map((e,i)=>i==this._noteIndex?html`<u>${e}</u> `:html`${e} `) } ]
       </p>
-      <button @click="${this.stop}">Stop</button>
-      <button @click="${this.start}">Start</button>
+      <button @click="${this.switch}">Play/Pause</button>
     </div>`;
   }
 }
