@@ -86,7 +86,7 @@
                                )
 
                           ""
-                          (img "./assets/icon.png" $iconSize $iconSize $iconStyle)
+                          (img "./assets/icon.jpg" $iconSize $iconSize $iconStyle)
                           ""
                           (limitedBox "800px" "auto" "Hi, I'm <stron>IT. Wolf</strong> welcome to my home site. here's some of my linktree or just look around... feel free to typing some commands under the page ;)" )
 
