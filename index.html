@@ -8,194 +8,188 @@
   <title>ljcu.cc</title>
 
   <style>
-    /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&display=swap'); */
-    /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap'); */
-    /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&family=Space+Grotesk&display=swap'); */
-    /* @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap'); */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@500;700&display=swap');
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,GRAD,XTRA@8..144,151,-4,413&display=swap');
+    align-items: end;
+  /* max-width: 80vmax; */
+  position:relative;
 
-    :root {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      --title-size: 10vmin;
-      --subtitle-size: 2vh;
-      letter-spacing: 0.2px;
+} 
 
-      -webkit-touch-callout: none;
-      /* iOS Safari */
-      -webkit-user-select: none;
-      /* Safari */
-      -khtml-user-select: none;
-      /* Konqueror HTML */
-      -moz-user-select: none;
-      /* Old versions of Firefox */
-      -ms-user-select: none;
-      /* Internet Explorer/Edge */
-      user-select: none;
-      /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-      /* font-family: 'Roboto Condensed', sans-serif; */
-      /* font-family: 'Roboto Serif', serif; */
-      /* font-family: 'Roboto Serif', serif; */
-/* font-family: 'Space Grotesk', sans-serif; */
-/* font-family: 'Michroma', sans-serif; */
-font-family: 'Roboto Flex', sans-serif;
-      font-size: 32px;
-      /* font-weight: 500; */
-      /* font-style: italic; */
-    }
+.wrapper *{
+  min-height: 300px;
+  /* min-width: 300px; */
 
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      scroll-behavior: smooth;
-    }
+  font-size: 50px;
+  position:relative;
+  top:0;
+  left:0;
 
+  overflow: hidden;
 
-    .content {
-      /* background: url(./cover.jpg) center / cover; */
-      min-width: 100vw;
-      min-height: 100vh;
-      /* background-position: cover / cover; */
-    }
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select:none;
 
-    .window {
-      width: 100%;
-      height: 100svh;
-      background: white;
-      /* font-family: Helvetica, Arial, sans-serif; */
-      box-sizing: border-box;
+  -webkit-user-drag: none;
 
-      /* overflow-y: auto; */
-    }
-    #terminal {
-      padding: 10vmin;
-    }
+  cursor: pointer;
+}
 
-    @media screen and  (min-width: 1200px) {
-      
-    #terminal {
-      padding: 64px;
-      display: flex;
-      flex-direction: column-reverse;
-    }
+.wrapper * span{
+  display: flex;
+  align-items: end;
+  justify-content: start;
 
-    #terminal>.block:last-child{
-      height: 100vh;
-      max-height: 100vh;
-      width: 60vmin;
-      max-width: 60vmin;
-      margin-left: 0;
-      font-size: 32px;
-      /* margin-bottom: 100px; */
-    }
+  padding: 64px;
+  padding-right: 128px;
+  /* --width: 150px; */
+  /* padding-right: var(--width); */
+  min-width: 80vw;
+}
 
-    #terminal>.block:nth-last-child(2){
-      margin-top: -100vh;
-      /* transition: all 0.35s; */
-    }
+.wrapper * img{
+  position:absolute;
+  top:var( --x , 0px );
+  left:var( --y , 0px );
 
-    #terminal>.block{
-      width: 40vmin;
-      max-width: 40vmin;
-      margin-left: auto;
-      font-size:18px;
-      /* transition: all 0.35s; */
-    }
-    }
+  width: 100%;
+  height: 100%;
 
-    #prompt {
-      color: white;
-      /* font-family: monospace; */
-      box-sizing: border-box;
+  object-fit: cover;
+  object-position: center;
 
-      display: flex;
-      align-items: center;
+  filter: blur(10px);
+  opacity: 10%;
 
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding-left: 32px;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+  transition: filter 0.35s, opacity 0.35s;
+}
 
-    #prompt>input {
-      background: transparent;
-      padding: 16px;
-      color: white;
-      /* font-family: monospace; */
-      outline: none;
-      border: none;
-      width: 100%;
-      /* font-size: 16px; */
+.wrapper *:hover img{
+  filter: blur(0px);
+  opacity: 20%;
+}
 
-      /* font-family: 'Roboto Condensed', sans-serif; */
-/* font-family: 'Space Grotesk', sans-serif; */
-/* font-family: 'Michroma', sans-serif; */
-font-family: 'Roboto Flex', sans-serif;
-      font-size: 32px;
-      /* font-weight: 500;
-      font-style: italic; */
-    }
+body{
+  font-family: 'Work Sans', sans-serif;
+  background-color: #323232;
 
+  margin:0;
+  padding: 0;
+}
 
-    .block {
-      margin-bottom: 16px;
-      color: #424224;
+header{
+  position: relative;
+  width: 100%;
+  /* background: url(./assets/trailer.jpeg) center / cover; */
+  /* height: 80vmin; */
+  /* background: rgb(210, 206, 194); */
+}
 
-      display: flex;
-      flex-direction: column;
-    }
+header div{
+  backdrop-filter: blur( 10px );
+  height:100%;
 
-    .block>* {
-      color: #424242;
-    }
+  padding: 64px 32px;
+  /* align-items: end; */
+  color: white;
+}
 
-    .block::after {
-      content: "hi";
-      color: transparent;
-      border-bottom: 3px solid rgba(0, 0, 0, 0.15);
-      /* max-width: 500px; */
-    }
+h1, h2{
+  margin:0;
+  padding:0;
+  display: inline-flex;
+}
 
-    a {
-      color: #646464;
-    }
+h1{
+  font-size: 80px;
+}
 
-    .hint {
-      opacity: 0.35;
-      color: black;
-    }
+h2{
+  font-size: 30px;
+}
 
-    .heading-1 {
-      padding: 15vmin;
-      font-size: 10vmin;
-      /* color: rgba(0,0,0,0.3); */
-      /* color: white; */
-      /* color: black; */
-      color: #0742f2;
-      /* mix-blend-mode:difference; */
-    }
+#github{
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  color: black;
+  background-color: #B1B1B1;
+  max-width: 700px;
+  /* min-width: 80vw; */
+  /* width: 50vw; */
+}
+
+#twitter{
+  background-color: #1DA1F2;
+  color: white;
+  font-weight: 700;
+  font-family: 'Work Sans', sans-serif;
+  max-width: 400px;
+  /* height: 200px; */
+}
+
+#blog{
+  background-color: #F8B550;
+  font-family: 'Noto Serif', serif;
+  color: black;
+  max-width: 500px;
+}
+
+.serif{
+  font-family: 'Noto Serif', serif;
+  margin: auto 16px;
+  margin-top: -7px;
+}
+
+  .break{
+    flex-basis: 100%;min-height:0 !important;
+  }
+
+  .circle{
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    min-width:0;
+    min-height:0;
+    --w: 200px;
+    width: var(--w);
+    height: var(--w);
+  }
+
   </style>
-
+  
   <script src="https://unpkg.com/smoothscroll-polyfill"></script>
 </head>
 
 <body>
-  <div class="window">
-    <div id="terminal">
-    </div>
-    <div id="prompt">
-      $
-      <input type="text"></input>
-    </div>
-  </div>
 
-  <script type="module" src="index.js"></script>
+  <header>
+    <div>
+      <h2>Welcome to my new homesite!</h2> <br>
+      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">New <span class="serif">Blog</span> and Homesite Design</h1>
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <div id="github" onclick="window.open(`https://github.com/ljcucc`)">
+      <img src="./assets/github.jpg" alt="">
+      <span>&lt;Github/&gt;</span>
+    </div>
+    <!-- <div class="circle"></div> -->
+    <div class="break"></div>
+    <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
+      <img src="./assets/twitter.png" alt="">
+      <span>Twitter</span>
+    </div>
+    <div id="blog" onclick="window.open(`https://blog.ljcu.cc`)">
+      <img src="./assets/blog.png" alt="">
+      <span>Blooog</span>
+    </div>
+ </div>
+
 </body>
 
 </html>
