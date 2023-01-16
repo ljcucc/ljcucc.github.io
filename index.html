@@ -10,9 +10,12 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@500;700&display=swap');
   .wrapper {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
 
     align-items: end;
   /* max-width: 80vmax; */
@@ -49,7 +52,7 @@
   padding-right: 128px;
   /* --width: 150px; */
   /* padding-right: var(--width); */
-  /* min-width: 80vw; */
+  min-width: 150px;
 }
 
 .wrapper * img{
@@ -118,7 +121,8 @@ h2{
   font-weight: 700;
   color: black;
   background-color: #B1B1B1;
-  max-width: 700px;
+  /* max-width: 700px; */
+  grid-column: span 6;
   /* min-width: 80vw; */
   /* width: 50vw; */
 }
@@ -128,9 +132,7 @@ h2{
   color: white;
   font-weight: 700;
   font-family: 'Work Sans', sans-serif;
-  max-width: 400px;
-  /* height: 200px; */
-       /* min-width: 80vw; */
+  grid-column: span 3;
 }
 
 #blog{
@@ -138,7 +140,7 @@ h2{
   background-color: #F8B550;
   font-family: 'Noto Serif', serif;
   color: black;
-  width: 500px;
+  grid-column: span 4;
 }
 
 .serif{
@@ -180,11 +182,9 @@ h2{
       <img src="./assets/github.jpg" alt="">
       <span>&lt;Github/&gt;</span>
     </div>
-    <div class="text-link" style="background-color: rgb(238, 238, 238); box-sizing: content-box; display: inline-flex;" onclick="window.open(`https://blog.ljcu.cc/tags/cssc-project/`)">
+    <div class="text-link" style="background-color: rgb(238, 238, 238); grid-column: span 4;" onclick="window.open('https://blog.ljcu.cc/tags/')">
       <span>Project current working on: <br>CSSC →</span>
     </div>
-    <!-- <div class="circle"></div> -->
-    <div class="break"></div>
     <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
       <img src="./assets/twitter.png" alt="">
       <span>Twitter</span>
