@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ljcu.cc</title>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@500;700&display=swap');
   .wrapper {
@@ -20,11 +21,14 @@
   /* max-width: 80vmax; */
   position:relative;
 
+  margin: auto;
+
 } 
 
 .wrapper *{
   min-height: 300px;
   /* min-width: 300px; */
+  width: 450px;
 
   font-size: 50px;
   position:relative;
@@ -41,16 +45,24 @@
 
   cursor: pointer;
 
+  justify-self: stretch;
+
   /* flex: 1; */
 }
 
-.wrapper * span{
+@media screen and (max-width: 900px){
+  .wrapper *{
+  min-width: 100%;
+  }
+}
+
+.wrapper div span{
   display: flex;
   align-items: end;
   justify-content: start;
 
   padding: 64px;
-  padding-right: 128px;
+  /* padding-right: 128px; */
   /* --width: 150px; */
   /* padding-right: var(--width); */
   min-width: 150px;
@@ -67,7 +79,7 @@
   object-fit: cover;
   object-position: center;
 
-  filter: blur(10px);
+  filter: blur(15px);
   opacity: 10%;
 
   transition: filter 0.35s, opacity 0.35s;
@@ -135,20 +147,32 @@ h2{
 }
 
 #blog{
-       /* min-width: 80vw; */
   background-color: #F8B550;
   font-family: 'Noto Serif', serif;
   color: black;
+  width: 450px;
 }
 
 #mastodon{
        /* min-width: 80vw; */
-  background-color: #5217d2;
+  background-color: #2466bb;
   color: black;
 
   font-weight: 700;
   font-family: 'Work Sans', sans-serif;
 }
+
+
+#unsplash{
+       /* min-width: 80vw; */
+  background-color: #bcbcbc;
+  color: black;
+
+  font-weight: 700;
+  font-family: 'Work Sans', sans-serif;
+}
+
+
 
 .serif{
   font-family: 'Noto Serif', serif;
@@ -169,7 +193,14 @@ h2{
     width: var(--w);
     height: var(--w);
   }
-
+.material-icons{
+  display: block !important;
+  padding:0 !important;
+  margin-left: 30px;
+  min-height: 0px;
+  min-width: 80px !important;
+  text-align: end;
+}
   </style>
   
   <script src="https://unpkg.com/smoothscroll-polyfill"></script>
@@ -189,8 +220,13 @@ h2{
       <img src="./assets/github.jpg" alt="">
       <span>&lt;Github/&gt;</span>
     </div>
-    <div class="text-link" style="justify-self: stretch;background-color: rgb(238, 238, 238); " onclick="window.open('https://blog.ljcu.cc/tags/')">
-      <span>Project current working on: <br>CSSC →</span>
+    <div class="text-link" style="justify-self: stretch;background-color: rgb(238, 238, 238); width: 900px;" onclick="window.open('https://blog.ljcu.cc/tags/')">
+      <span>Project current working on: <br>CSSC 
+      
+        <span class="material-icons">
+          east
+          </span>
+      </span>
     </div>
     <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
       <img src="./assets/twitter.png" alt="">
@@ -203,6 +239,10 @@ h2{
     <div id="mastodon" onclick="window.open(`https://furries.init.engineer/@wolf`)">
       <img src="./assets/mastodon.png" alt="">
       <span>Mastodon</span>
+    </div>
+    <div id="unsplash" onclick="window.open(`https://unsplash.com/@ljcucc`)">
+      <img src="./assets/unsplash.jpg" alt="">
+      <span>Unsplash</span>
     </div>
  </div>
 
