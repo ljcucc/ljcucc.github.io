@@ -33,7 +33,7 @@
       min-width: fit-content;
       max-width: min(80vw, fit-content);
 
-      font-size:3rem;
+      font-size: 3rem;
       position: relative;
       top: 0;
       left: 0;
@@ -65,16 +65,19 @@
 
       transition: border-radius 0.35s, color 0.35s, background-color 0.35s;
       flex: 1;
+
+      border: 3px solid black;
     }
 
     .wrapper>div:hover {
       /* border-radius: 180px; */
       border-radius: 80px;
       background-color: rgb(255, 253, 250);
+      border: 3px solid var(--color, black);
     }
 
-    .wrapper>div:hover>span{
-      color: var( --color, black);
+    .wrapper>div:hover>span {
+      color: var(--color, black);
     }
 
     /* @media screen and (max-width: 900px) {
@@ -107,7 +110,7 @@
       object-position: center;
 
       /* filter: blur(15px); */
-      filter:grayscale(0%);
+      filter: grayscale(0%);
       /* filter:grayscale(10%); */
       opacity: 40%;
 
@@ -116,11 +119,11 @@
 
     .wrapper *:hover img {
       /* filter: blur(0px); */
-      filter:grayscale(100%);
+      filter: grayscale(100%);
       opacity: 6%;
     }
 
-    :root{
+    :root {
       --bg: #F0ECE5;
     }
 
@@ -140,6 +143,13 @@
       /* height: 80vmin; */
       /* background: rgb(210, 206, 194); */
       /* box-shadow: 0px 3px 0px black; */
+      overflow:hidden;
+    }
+
+    header *{
+
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     header div {
@@ -159,7 +169,7 @@
     }
 
     h1 {
-      font-size: 80px;
+      font-size: 4.5rem;
     }
 
     h2 {
@@ -232,7 +242,7 @@
       min-width: fit-content;
     }
 
-    .marquee-container{
+    .marquee-container {
       height: 40px;
       border-bottom: 2.5px solid black;
       margin-bottom: 50px;
@@ -242,7 +252,7 @@
       align-items: center;
 
       position: sticky;
-      top:0;
+      top: 0;
       z-index: 100;
       background-color: var(--bg);
     }
@@ -284,35 +294,46 @@
 
     .running-keyword::after {
       white-space: nowrap;
+
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+
       overflow: hidden;
       display: inline-block;
       animation: keyword 30s linear infinite;
       content: " ";
     }
 
-    @keyframes keyword{
-      50%,100%, 0%{
-        content: "Creating";
+    @keyframes keyword {
+
+      60%,
+      100%,
+      0% {
+        content: "to Creating";
       }
 
-      10%{
-        content: "Coding";
+      10% {
+        content: "to Coding";
       }
 
-      20%{
-        content: "Web Design";
+      20% {
+        content: "to Web Design";
       }
 
-      30%{
-        content: "Thinking";
+      30% {
+        content: "to Thinking";
       }
 
-      40%{
-        content: "Furry";
+      40% {
+        content: "being furry";
+      }
+
+      50% {
+        content: "being a wolf";
       }
     }
 
-    footer{
+    footer {
       padding: 32px;
       margin-top: 50px;
       border-top: 2.5px solid black;
@@ -330,7 +351,7 @@
     <div>
       <h2>Welcome to my new home site!</h2> <br>
       <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        I'm a <span class="serif">wolf</span> who loves to&nbsp;<span class="running-keyword "></span>.</h1>
+        I'm a <span class="serif">wolf</span> who loves&nbsp;<span class="running-keyword "></span>.</h1>
     </div>
   </header>
 
@@ -349,8 +370,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class="wrapper">
     <div class="text-link" style="justify-self: stretch; min-width: min(900px, 80vw);"
       onclick="window.open('https://blog.ljcu.cc/tags/')">
@@ -376,6 +397,11 @@
     <div id="unsplash" onclick="window.open(`https://unsplash.com/@ljcucc`)">
       <img src="./assets/unsplash.jpg" alt="">
       <span>Unsplash</span>
+    </div>
+
+    <div class="text-link" style="justify-self: stretch; min-width: min(700px, 80vw);" onclick="window.open(`https://wiki.ljcu.cc/about`)">
+      <span>About me<br> →
+      </span>
     </div>
   </div>
 
