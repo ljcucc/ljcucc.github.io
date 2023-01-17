@@ -13,24 +13,27 @@
 
     .wrapper {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 1.5px;
+      flex-flow: row wrap;
+      gap: 24px;
 
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
-      align-items: end;
+      align-content: stretch;
+      justify-content: stretch;
       /* max-width: 80vmax; */
       position: relative;
       /* background: black; */
+      /* margin: 32px; */
+      padding: 32px;
     }
 
-    .wrapper *{
+    .wrapper * {
       min-height: 300px;
-      /* min-width: 300px; */
-      width: 450px;
+      /* min-width: 400px; */
+      min-width: fit-content;
+      max-width: min(80vw, fit-content);
 
-      font-size: 50px;
+      font-size:3rem;
       position: relative;
       top: 0;
       left: 0;
@@ -46,29 +49,38 @@
       cursor: pointer;
 
       justify-self: stretch;
+      /* box-sizing: content-box; */
 
 
       /* flex: 1; */
     }
 
-    .wrapper>div{
-      box-shadow: 
-        3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black;
-      background-color:#F0ECE5;
+    .wrapper>div {
+      /* box-shadow: 
+        3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black; */
+      background-color: #fffdf9;
+      border-radius: 20px;
+
+      transition: border-radius 0.35s;
+      flex: 1;
     }
 
-    @media screen and (max-width: 900px) {
+    .wrapper>div:hover {
+      border-radius: 180px;
+    }
+
+    /* @media screen and (max-width: 900px) {
       .wrapper * {
         min-width: 100%;
       }
-    }
+    } */
 
     .wrapper div span {
       display: flex;
       align-items: end;
       justify-content: start;
 
-      padding: 64px;
+      padding: 3rem;
       /* padding-right: 128px; */
       /* --width: 150px; */
       /* padding-right: var(--width); */
@@ -86,7 +98,7 @@
       object-fit: cover;
       object-position: center;
 
-      filter: blur(15px);
+      /* filter: blur(15px); */
       opacity: 10%;
 
       transition: filter 0.35s, opacity 0.35s;
@@ -97,9 +109,13 @@
       opacity: 20%;
     }
 
+    :root{
+      --bg: #F0ECE5;
+    }
+
     body {
       font-family: 'Work Sans', sans-serif;
-      background-color: #F0ECE5;
+      background-color: var(--bg);
       color: black;
 
       margin: 0;
@@ -112,7 +128,6 @@
       /* background: url(./assets/trailer.jpeg) center / cover; */
       /* height: 80vmin; */
       /* background: rgb(210, 206, 194); */
-      border-bottom: 3px solid black;
       /* box-shadow: 0px 3px 0px black; */
     }
 
@@ -141,7 +156,7 @@
     }
 
     #github {
-      font-family: 'Roboto Mono', monospace;
+      /* font-family: 'Roboto Mono', monospace; */
       font-weight: 700;
       color: black;
       background-color: #B1B1B1;
@@ -167,7 +182,7 @@
     #mastodon {
       /* min-width: 80vw; */
       background-color: #2466bb;
-      color: black;
+      color: white;
 
       font-weight: 700;
       font-family: 'Work Sans', sans-serif;
@@ -214,6 +229,97 @@
       min-width: 80px !important;
       text-align: end;
     }
+
+    .text-link {
+      box-sizing: content-box;
+      min-width: fit-content;
+    }
+
+    .marquee-container{
+      height: 40px;
+      border-bottom: 2.5px solid black;
+      margin-bottom: 50px;
+      border-top: 2.5px solid black;
+
+      display: flex;
+      align-items: center;
+
+      position: sticky;
+      top:0;
+      z-index: 100;
+      background-color: var(--bg);
+    }
+
+    .marquee-wrapper {
+      flex-grow: 1;
+      overflow: hidden;
+      margin: auto;
+
+    }
+
+    .marquee {
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee * {
+      display: inline-block;
+      /* padding: 16px; */
+      margin: 0;
+      color: black;
+      font-size: 14.5px;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(-50%, 0, 0);
+        -webkit-transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+
+    .running-keyword::after {
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: keyword 30s linear infinite;
+      content: " ";
+    }
+
+    @keyframes keyword{
+      50%,100%, 0%{
+        content: "Creating";
+      }
+
+      10%{
+        content: "Coding";
+      }
+
+      20%{
+        content: "Web Design";
+      }
+
+      30%{
+        content: "Thinking";
+      }
+
+      40%{
+        content: "Furry";
+      }
+    }
+
+    footer{
+      padding: 32px;
+      margin-top: 50px;
+      border-top: 2.5px solid black;
+    }
   </style>
 
   <script src="https://unpkg.com/smoothscroll-polyfill"></script>
@@ -222,22 +328,41 @@
 <body>
 
   <header>
+
+
     <div>
-      <h2>Welcome to my new homesite!</h2> <br>
-      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">New <span class="serif">Blog</span> and Homesite
-        Design</h1>
+      <h2>Welcome to my new home site!</h2> <br>
+      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        I'm a <span class="serif">wolf</span> who loves to&nbsp;<span class="running-keyword "></span>.</h1>
     </div>
   </header>
 
-  <div class="wrapper">
-    <div id="github" onclick="window.open(`https://github.com/ljcucc`)">
-      <img src="./assets/github.jpg" alt="">
-      <span>&lt;Github/&gt;</span>
+
+  <div class="marquee-container">
+    <div class="marquee-wrapper" style="">
+      <div class="marquee">
+        <p>
+          The tribal grid is being built... and a lot of content is being written, so please look forward to it ~ (=ﾟωﾟ)ノ
+          部落格正在建置中⋯⋯ 許多的內容也正在撰寫中，敬請期待～ (=ﾟωﾟ)ﾉ
+        </p>
+        <p>
+          The tribal grid is being built... and a lot of content is being written, so please look forward to it ~ (=ﾟωﾟ)ノ
+          部落格正在建置中⋯⋯ 許多的內容也正在撰寫中，敬請期待～ (=ﾟωﾟ)ﾉ
+        </p>
+      </div>
     </div>
-    <div class="text-link" style="justify-self: stretch; width: 900px;"
+  </div>
+  
+  
+  <div class="wrapper">
+    <div class="text-link" style="justify-self: stretch; min-width: min(900px, 80vw);"
       onclick="window.open('https://blog.ljcu.cc/tags/')">
       <span>Project current working on: CSSC <br> →
       </span>
+    </div>
+    <div id="github" onclick="window.open(`https://github.com/ljcucc`)">
+      <img src="./assets/github.jpg" alt="">
+      <span>&lt;Github/&gt;</span>
     </div>
     <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
       <img src="./assets/twitter.png" alt="">
@@ -245,7 +370,7 @@
     </div>
     <div id="blog" onclick="window.open(`https://blog.ljcu.cc`)">
       <img src="./assets/blog.png" alt="">
-      <span>Blooog</span>
+      <span>Blog</span>
     </div>
     <div id="mastodon" onclick="window.open(`https://furries.init.engineer/@wolf`)">
       <img src="./assets/mastodon.png" alt="">
@@ -256,6 +381,10 @@
       <span>Unsplash</span>
     </div>
   </div>
+
+  <footer>
+    2023 (c) - Jason Lin x IT_Wolf x ljcu.cc
+  </footer>
 
 </body>
 
