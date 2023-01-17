@@ -10,199 +10,212 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@500;700&display=swap');
-  .wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 
-    grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5px;
 
-    align-items: end;
-  /* max-width: 80vmax; */
-  position:relative;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
-  margin: auto;
+      align-items: end;
+      /* max-width: 80vmax; */
+      position: relative;
+      /* background: black; */
+    }
 
-} 
+    .wrapper *{
+      min-height: 300px;
+      /* min-width: 300px; */
+      width: 450px;
 
-.wrapper *{
-  min-height: 300px;
-  /* min-width: 300px; */
-  width: 450px;
+      font-size: 50px;
+      position: relative;
+      top: 0;
+      left: 0;
 
-  font-size: 50px;
-  position:relative;
-  top:0;
-  left:0;
+      overflow: hidden;
 
-  overflow: hidden;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
 
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select:none;
+      -webkit-user-drag: none;
 
-  -webkit-user-drag: none;
+      cursor: pointer;
 
-  cursor: pointer;
-
-  justify-self: stretch;
-
-  /* flex: 1; */
-}
-
-@media screen and (max-width: 900px){
-  .wrapper *{
-  min-width: 100%;
-  }
-}
-
-.wrapper div span{
-  display: flex;
-  align-items: end;
-  justify-content: start;
-
-  padding: 64px;
-  /* padding-right: 128px; */
-  /* --width: 150px; */
-  /* padding-right: var(--width); */
-  min-width: 150px;
-}
-
-.wrapper * img{
-  position:absolute;
-  top:var( --x , 0px );
-  left:var( --y , 0px );
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  filter: blur(15px);
-  opacity: 10%;
-
-  transition: filter 0.35s, opacity 0.35s;
-}
-
-.wrapper *:hover img{
-  filter: blur(0px);
-  opacity: 20%;
-}
-
-body{
-  font-family: 'Work Sans', sans-serif;
-  background-color: #323232;
-
-  margin:0;
-  padding: 0;
-}
-
-header{
-  position: relative;
-  width: 100%;
-  /* background: url(./assets/trailer.jpeg) center / cover; */
-  /* height: 80vmin; */
-  /* background: rgb(210, 206, 194); */
-}
-
-header div{
-  backdrop-filter: blur( 10px );
-  height:100%;
-
-  padding: 64px 32px;
-  /* align-items: end; */
-  color: white;
-}
-
-h1, h2{
-  margin:0;
-  padding:0;
-  display: inline-flex;
-}
-
-h1{
-  font-size: 80px;
-}
-
-h2{
-  font-size: 30px;
-}
-
-#github{
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 700;
-  color: black;
-  background-color: #B1B1B1;
-  /* max-width: 700px; */
-  /* min-width: 80vw; */
-  /* width: 50vw; */
-}
-
-#twitter{
-  background-color: #1DA1F2;
-  color: white;
-  font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
-}
-
-#blog{
-  background-color: #F8B550;
-  font-family: 'Noto Serif', serif;
-  color: black;
-  width: 450px;
-}
-
-#mastodon{
-       /* min-width: 80vw; */
-  background-color: #2466bb;
-  color: black;
-
-  font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
-}
+      justify-self: stretch;
 
 
-#unsplash{
-       /* min-width: 80vw; */
-  background-color: #bcbcbc;
-  color: black;
+      /* flex: 1; */
+    }
 
-  font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
-}
+    .wrapper>div{
+      box-shadow: 
+        3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black;
+      background-color:#F0ECE5;
+    }
+
+    @media screen and (max-width: 900px) {
+      .wrapper * {
+        min-width: 100%;
+      }
+    }
+
+    .wrapper div span {
+      display: flex;
+      align-items: end;
+      justify-content: start;
+
+      padding: 64px;
+      /* padding-right: 128px; */
+      /* --width: 150px; */
+      /* padding-right: var(--width); */
+      min-width: 150px;
+    }
+
+    .wrapper * img {
+      position: absolute;
+      top: var(--x, 0px);
+      left: var(--y, 0px);
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      filter: blur(15px);
+      opacity: 10%;
+
+      transition: filter 0.35s, opacity 0.35s;
+    }
+
+    .wrapper *:hover img {
+      filter: blur(0px);
+      opacity: 20%;
+    }
+
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: #F0ECE5;
+      color: black;
+
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      /* background: url(./assets/trailer.jpeg) center / cover; */
+      /* height: 80vmin; */
+      /* background: rgb(210, 206, 194); */
+      border-bottom: 3px solid black;
+      /* box-shadow: 0px 3px 0px black; */
+    }
+
+    header div {
+      backdrop-filter: blur(10px);
+      height: 100%;
+
+      padding: 64px 32px;
+      /* align-items: end; */
+      /* color: white; */
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+
+    h1 {
+      font-size: 80px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    #github {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      color: black;
+      background-color: #B1B1B1;
+      /* max-width: 700px; */
+      /* min-width: 80vw; */
+      /* width: 50vw; */
+    }
+
+    #twitter {
+      background-color: #1DA1F2;
+      color: white;
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    #blog {
+      background-color: #F8B550;
+      font-family: 'Noto Serif', serif;
+      color: black;
+      width: 450px;
+    }
+
+    #mastodon {
+      /* min-width: 80vw; */
+      background-color: #2466bb;
+      color: black;
+
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+
+    #unsplash {
+      /* min-width: 80vw; */
+      background-color: white;
+      color: black;
+
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+    }
 
 
 
-.serif{
-  font-family: 'Noto Serif', serif;
-  margin: auto 16px;
-  margin-top: -7px;
-}
+    .serif {
+      font-family: 'Noto Serif', serif;
+      margin: auto 16px;
+      margin-top: -7px;
+    }
 
-  .break{
-    flex-basis: 100%;min-height:0 !important;
-  }
+    .break {
+      flex-basis: 100%;
+      min-height: 0 !important;
+    }
 
-  .circle{
-    background-color: #D9D9D9;
-    border-radius: 50%;
-    min-width:0;
-    min-height:0;
-    --w: 200px;
-    width: var(--w);
-    height: var(--w);
-  }
-.material-icons{
-  display: block !important;
-  padding:0 !important;
-  margin-left: 30px;
-  min-height: 0px;
-  min-width: 80px !important;
-  text-align: end;
-}
+    .circle {
+      background-color: #D9D9D9;
+      border-radius: 50%;
+      min-width: 0;
+      min-height: 0;
+      --w: 200px;
+      width: var(--w);
+      height: var(--w);
+    }
+
+    .material-icons {
+      display: block !important;
+      padding: 0 !important;
+      margin-left: 30px;
+      min-height: 0px;
+      min-width: 80px !important;
+      text-align: end;
+    }
   </style>
-  
+
   <script src="https://unpkg.com/smoothscroll-polyfill"></script>
 </head>
 
@@ -211,7 +224,8 @@ h2{
   <header>
     <div>
       <h2>Welcome to my new homesite!</h2> <br>
-      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">New <span class="serif">Blog</span> and Homesite Design</h1>
+      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">New <span class="serif">Blog</span> and Homesite
+        Design</h1>
     </div>
   </header>
 
@@ -220,12 +234,9 @@ h2{
       <img src="./assets/github.jpg" alt="">
       <span>&lt;Github/&gt;</span>
     </div>
-    <div class="text-link" style="justify-self: stretch;background-color: rgb(238, 238, 238); width: 900px;" onclick="window.open('https://blog.ljcu.cc/tags/')">
-      <span>Project current working on: <br>CSSC 
-      
-        <span class="material-icons">
-          east
-          </span>
+    <div class="text-link" style="justify-self: stretch; width: 900px;"
+      onclick="window.open('https://blog.ljcu.cc/tags/')">
+      <span>Project current working on: CSSC <br> →
       </span>
     </div>
     <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
@@ -244,7 +255,7 @@ h2{
       <img src="./assets/unsplash.jpg" alt="">
       <span>Unsplash</span>
     </div>
- </div>
+  </div>
 
 </body>
 
