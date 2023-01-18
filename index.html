@@ -143,7 +143,7 @@
       /* height: 80vmin; */
       /* background: rgb(210, 206, 194); */
       /* box-shadow: 0px 3px 0px black; */
-      overflow:hidden;
+      overflow-x:hidden;
     }
 
     header *{
@@ -317,7 +317,7 @@
       }
 
       20% {
-        content: "to Web Design";
+        content: "to Web Dev";
       }
 
       30% {
@@ -326,10 +326,6 @@
 
       40% {
         content: "being furry";
-      }
-
-      50% {
-        content: "being a wolf";
       }
     }
 
@@ -375,7 +371,7 @@
   <div class="wrapper">
     <div class="text-link" style="justify-self: stretch; min-width: min(900px, 80vw);"
       onclick="window.open('https://blog.ljcu.cc/tags/')">
-      <span>Project current working on: CSSC <br> →
+      <span>Project current working on: CSSC<br> →
       </span>
     </div>
     <div id="github" onclick="window.open(`https://github.com/ljcucc`)">
@@ -399,8 +395,17 @@
       <span>Unsplash</span>
     </div>
 
-    <div class="text-link" style="justify-self: stretch; min-width: min(700px, 80vw);" onclick="window.open(`https://wiki.ljcu.cc/about`)">
+    <div class="text-link" style="max-width: 1500px;justify-self: stretch; min-width: min(700px, 80vw);" onclick="window.open(`https://wiki.ljcu.cc/about`)">
       <span>About me<br> →
+      </span>
+    </div>
+
+    <div class="text-link" onclick="location.href='/contact'">
+      <span style="max-width: min(60vw,300px);">
+        Contact <br>me 
+        <span class="material-icons">
+          call
+        </span>
       </span>
     </div>
   </div>
