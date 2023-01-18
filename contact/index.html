@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ljcu.cc - Contact</title>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@300;500;700&display=swap');
 
@@ -13,7 +15,7 @@
       --bg: #F0ECE5;
     }
 
-    body{
+    body {
       margin: 0;
       padding: 4vmax;
 
@@ -21,7 +23,7 @@
       font-family: 'Work Sans', sans-serif;
     }
 
-    h1{
+    .h1 {
       font-family: 'Work Sans', sans-serif;
       font-size: 5rem;
       font-weight: 500;
@@ -29,54 +31,58 @@
       margin-bottom: 3rem;
     }
 
-    header{
+    header {
       margin-bottom: 8rem;
+      display: flex;
+      flex-direction: column;
     }
 
-    textarea, input[type=email], input[type=text]{
+    textarea,
+    input[type=email],
+    input[type=text] {
       font-family: 'Work Sans', sans-serif;
       font-size: 16px;
 
       border-radius: 0px;
-      border:none;
+      border: none;
       border-bottom: 2.5px solid black;
       min-width: 300px;
       background: transparent;
 
       padding: 1rem;
-      outline:none;
+      outline: none;
     }
 
-    input::placeholder{
-      color: rgba(0,0,0,.35);
+    input::placeholder {
+      color: rgba(0, 0, 0, .35);
     }
 
-    textarea{
+    textarea {
       height: 150px;
     }
 
-    input[type=submit]{
+    input[type=submit] {
       color: black;
       padding: 1.2rem;
       border-radius: 10px;
       border: 2.5px solid black;
-      outline:none;
+      outline: none;
       font-family: 'Work Sans', sans-serif;
       font-size: 16px;
       background: transparent;
       transition: all 0.35s;
     }
 
-    input[type=submit]:hover{
+    input[type=submit]:hover {
       background: black;
       color: var(--bg);
     }
 
-    a{
+    a {
       color: black;
     }
 
-    form{
+    form {
       display: flex;
       gap: 23px;
 
@@ -88,19 +94,19 @@
     }
 
 
-    body.hide form{
+    body.hide form {
       padding-top: 32px;
       opacity: 0;
     }
 
-    .done{
+    .done {
       transition: margin 0.35s, opacity 0.5s;
       margin-top: -32px;
       opacity: 0;
     }
 
-    body.hide .done{
-      margin-top:0;
+    body.hide .done {
+      margin-top: 0;
       opacity: 1;
     }
 
@@ -159,16 +165,33 @@
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
     } */
+
+    a:hover{
+      text-decoration: underline;
+    }
   </style>
 </head>
+
 <body>
+
+  <p style="margin-bottom: 4rem;">
+    <a style="text-decoration: none; display: flex; flex-direction: row; align-items: center;" href="javascript:history.back()">
+      <span class="material-icons" style="margin-right:1rem">
+        arrow_back
+      </span>
+      Back
+    </a>
+  </p>
+
   <header>
-    <h1 style="height: 10rem;"><strong>Bark</strong> to<br><span class="running-keyword">the wolf</span></h1>
-    <br>contact me in the <span style="font-family:'Noto Serif', serif;">old & fashion</span> way, which is contact form box.
-    <br>or <a href="javascript:history.back()">Back</a>.
+    <div class="h1" style="box-sizing: content-box;"><strong>Contact</strong> with<br><span class="running-keyword">the IT. Wolf</span></div>
+    <div>
+     I recommend using social media like Twitter, Mastodon.<br>but you also could contact me in the <span style="font-family:'Noto Serif', serif;">old & fashion</span> way: contact form box.
+    </div>
+    <!-- <br>or <a href="javascript:history.back()">Back</a>. -->
   </header>
 
-  <div class="done">Your message have been *<i>howled</i>* to IT. Wolf's contact box. We will </div>
+  <div class="done">Your message have been *<i>howled</i>* to IT. Wolf's contact box. We will contact you with in a week.</div>
 
   <form action="">
     <input style="flex:1;" type="text" placeholder="Name" name="entry.350516705" required>
@@ -176,9 +199,10 @@
     <textarea style="flex:2;" id="" placeholder="Message" name="entry.1618807262" required></textarea>
 
     <div style="flex-basis: 100%;"></div>
-    <input type="submit" value="BARK"/>
+    <input type="submit" value="SEND"/>
   </form>
 </body>
 
 <script src="index.js"></script>
+
 </html>
