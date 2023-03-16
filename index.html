@@ -1,426 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ljcu.cc</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Roboto+Mono:wght@700&family=Work+Sans:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-    .wrapper {
+    :root{
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10pt;
+    }
+
+    body{
+      padding:0;
+      margin: 12pt;
+    }
+
+    header{
       display: flex;
-      flex-flow: row wrap;
-      gap: 24px;
-
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-
-      align-content: stretch;
-      justify-content: stretch;
-      /* max-width: 80vmax; */
-      position: relative;
-      /* background: black; */
-      /* margin: 32px; */
-      padding: 32px;
+      flex-flow: row;
     }
 
-    .wrapper * {
-      min-height: 300px;
-      /* min-width: 400px; */
-      min-width: fit-content;
-      max-width: min(80vw, fit-content);
-
-      font-size: 3rem;
-      position: relative;
-      top: 0;
-      left: 0;
-
-      overflow: hidden;
-
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-
-      -webkit-user-drag: none;
-
-      cursor: pointer;
-
-      justify-self: stretch;
-      /* box-sizing: content-box; */
-
-
-      /* flex: 1; */
-    }
-
-    .wrapper>div {
-      /* box-shadow: 
-        3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black; */
-      /* background-color: var( --color, #fffdf9); */
-      background-color: #fffdf9;
-
-      border-radius: 20px;
-
-      transition: border-radius 0.35s, color 0.35s, background-color 0.35s;
+    header > *{
       flex: 1;
-
-      border: 3px solid black;
     }
 
-    .wrapper>div:hover {
-      /* border-radius: 180px; */
-      border-radius: 80px;
-      background-color: rgb(255, 253, 250);
-      border: 3px solid var(--color, black);
+    a:hover, .clickable:hover{
+      opacity: 0.5;
+      cursor: pointer;
     }
 
-    .wrapper>div:hover>span {
-      color: var(--color, black);
-    }
-
-    /* @media screen and (max-width: 900px) {
-      .wrapper * {
-        min-width: 100%;
-      }
-    } */
-
-    .wrapper div span {
-      display: flex;
-      align-items: end;
-      justify-content: start;
-
-      padding: 3rem;
-      /* padding-right: 128px; */
-      /* --width: 150px; */
-      /* padding-right: var(--width); */
-      min-width: 150px;
-    }
-
-    .wrapper * img {
-      position: absolute;
-      top: var(--x, 0px);
-      left: var(--y, 0px);
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-      object-position: center;
-
-      /* filter: blur(15px); */
-      filter: grayscale(0%);
-      /* filter:grayscale(10%); */
-      opacity: 40%;
-
-      transition: filter 0.35s, opacity 0.35s;
-    }
-
-    .wrapper *:hover img {
-      /* filter: blur(0px); */
+    a{
       filter: grayscale(100%);
-      opacity: 6%;
+      text-decoration: none;
     }
 
-    :root {
-      --bg: #F0ECE5;
-    }
-
-    body {
-      font-family: 'Work Sans', sans-serif;
-      background-color: var(--bg);
-      color: black;
-
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      position: relative;
-      width: 100%;
-      /* background: url(./assets/trailer.jpeg) center / cover; */
-      /* height: 80vmin; */
-      /* background: rgb(210, 206, 194); */
-      /* box-shadow: 0px 3px 0px black; */
-      overflow-x:hidden;
-      line-break:loose;
-    }
-
-    header *{
-
-      line-break:loose;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-
-    header div {
-      backdrop-filter: blur(10px);
-      height: 100%;
-
-      padding: 64px 32px;
-      /* align-items: end; */
-      /* color: white; */
-    }
-
-    h1,
-    h2 {
-      margin: 0;
-      padding: 0;
-      display: inline-flex;
-    }
-
-    h1 {
-      /* font-size: 4.5rem; */
-      font-size: max(12vmin, 5vmax);
-      line-break: anywhere;
-      hyphens: auto; 
-    }
-
-    h2 {
-      font-size: max(5vmin, 2vmax);
-    }
-
-    #github {
-      /* font-family: 'Roboto Mono', monospace; */
-      /* font-weight: 700; */
-      color: black;
-      --color: #B1B1B1;
-      /* max-width: 700px; */
-      /* min-width: 80vw; */
-      /* width: 50vw; */
-    }
-
-    #twitter {
-      --color: #1DA1F2;
-      color: black;
-      /* color: white; */
-      font-weight: 700;
-      font-family: 'Work Sans', sans-serif;
-    }
-
-    #blog {
-      --color: #F8B550;
-      /* font-family: 'Noto Serif', serif; */
-      color: black;
-      width: 450px;
-      font-weight: 700;
-    }
-
-    #mastodon {
-      /* min-width: 80vw; */
-      --color: #2466bb;
-      /* color: white; */
-
-      font-weight: 700;
-      font-family: 'Work Sans', sans-serif;
-    }
-
-
-    #unsplash {
-      /* min-width: 80vw; */
-      --color: rgb(238, 215, 139);
-      color: black;
-
-      font-weight: 700;
-      font-family: 'Work Sans', sans-serif;
-    }
-
-
-
-    .serif {
-      font-family: 'Noto Serif', serif;
-      margin-top: -7px;
-    }
-
-    .material-icons {
-      display: block !important;
-      padding: 0 !important;
-      margin-left: 30px;
-      min-height: 0px;
-      min-width: 80px !important;
-      text-align: end;
-    }
-
-    .text-link {
-      box-sizing: content-box;
-      min-width: fit-content;
-    }
-
-    .marquee-container {
-      height: 40px;
-      border-bottom: 2.5px solid black;
-      margin-bottom: 50px;
-      border-top: 2.5px solid black;
-
-      display: flex;
-      align-items: center;
-
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: var(--bg);
-    }
-
-    .marquee-wrapper {
-      flex-grow: 1;
-      overflow: hidden;
-      margin: auto;
-
-    }
-
-    .marquee {
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-      animation: marquee 30s linear infinite;
-    }
-
-    .marquee * {
-      display: inline-block;
-      /* padding: 16px; */
-      margin: 0;
-      color: black;
-      font-size: 14.5px;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translate3d(0, 0, 0);
-        -webkit-transform: translate3d(0, 0, 0);
+    @media screen and (max-width:600px){
+      header{
+        flex-direction: column;
       }
-
-      100% {
-        transform: translate3d(-50%, 0, 0);
-        -webkit-transform: translate3d(-50%, 0, 0);
+      header > * {
+        margin-bottom: 5rem;
+        text-align: left !important;
       }
     }
-
-
-    .running-keyword::after {
-      white-space: nowrap;
-
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-
-      overflow: hidden;
-      display: inline-block;
-      animation: keyword 30s linear infinite;
-      content: " ";
-      line-break:loose;
-    }
-
-    @keyframes keyword {
-
-      60%,
-      100%,
-      0% {
-        content: "to Creating";
-      }
-
-      10% {
-        content: "to Coding";
-      }
-
-      20% {
-        content: "to Web Dev";
-      }
-
-      30% {
-        content: "to Thinking";
-      }
-
-      40% {
-        content: "being furry";
-      }
-    }
-
-    footer {
-      padding: 32px;
-      margin-top: 50px;
-      border-top: 2.5px solid black;
-    }
-
   </style>
-
-  <script src="https://unpkg.com/smoothscroll-polyfill"></script>
 </head>
-
 <body>
-
   <header>
-
-
     <div>
-      <h2>Welcome to the ljcu.cc home site!</h2> <br>
-      <h1 style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        I'm a&nbsp;<span class="serif">wolf</span>&nbsp;who loves&nbsp;<span class="running-keyword "></span>.</h1>
+      ljcu.cc <br> passion coder
     </div>
-  </header>
-
-
-  <div class="marquee-container">
-    <div class="marquee-wrapper" style="">
-      <div class="marquee">
-        <p>
-          The blog is being built... and a lot of content is being written, so please look forward to it ~ (=ﾟωﾟ)ノ
-          部落格正在建置中⋯⋯ 許多的內容也正在撰寫中，敬請期待～ (=ﾟωﾟ)ﾉ
-        </p>
-        <p>
-          The blog is being built... and a lot of content is being written, so please look forward to it ~ (=ﾟωﾟ)ノ
-          部落格正在建置中⋯⋯ 許多的內容也正在撰寫中，敬請期待～ (=ﾟωﾟ)ﾉ
-        </p>
+    <div style="text-align: center;">
+        (<a href="https://wiki.ljcu.cc">wiki</a>) 
+        (<a href="https://blog.ljcu.cc">blog</a>) 
+        (<a href="https://github.com/ljcucc">github</a>) 
+    </div>
+    <div style="text-align: right;width: 500px;">
+      A creator from Taiwan instrested in legcy copmtuing, creative coding and computing. <a href="mailto:yolks-briefer.0m@icloud.com">(contact)</a>
       </div>
-    </div>
-  </div>
-
-
-  <div class="wrapper">
-    <div class="text-link" style="justify-self: stretch; min-width: min(900px, 80vw);"
-      onclick="window.open('https://blog.ljcu.cc/tags/')">
-      <span>Project current working on: CSSC<br> →
-      </span>
-    </div>
-    <div id="github" onclick="window.open(`https://github.com/ljcucc`)">
-      <img src="./assets/github.jpg" alt="">
-      <span>&lt;Github/&gt;</span>
-    </div>
-    <div id="twitter" onclick="window.open(`https://twitter.com/ljcucc`)">
-      <img src="./assets/twitter.png" alt="">
-      <span>Twitter</span>
-    </div>
-    <div id="blog" onclick="window.open(`https://blog.ljcu.cc`)">
-      <img src="./assets/blog.png" alt="">
-      <span>Blog</span>
-    </div>
-    <div id="mastodon" onclick="window.open(`https://furries.init.engineer/@wolf`)">
-      <img src="./assets/mastodon.png" alt="">
-      <span>Mastodon</span>
-    </div>
-    <div id="unsplash" onclick="window.open(`https://unsplash.com/@ljcucc`)">
-      <img src="./assets/unsplash.jpg" alt="">
-      <span>Unsplash</span>
-    </div>
-
-    <div class="text-link" style="max-width: 1500px;justify-self: stretch; min-width: min(700px, 80vw);" onclick="window.open(`https://wiki.ljcu.cc/about`)">
-      <span>About me<br> →
-      </span>
-    </div>
-
-    <div class="text-link" onclick="location.href='/contact'">
-      <span style="max-width: min(60vw,300px);">
-        Contact <br>me 
-        <span style="margin-left: 0;" class="material-icons">
-          call
-        </span>
-      </span>
-    </div>
-  </div>
-
-  <footer>
-    2023 (c) - Jason Lin x IT_Wolf x ljcu.cc
-  </footer>
-
+  </header>
+  <main>
+    <h2></h2>
+  </main>
 </body>
-
 </html>
