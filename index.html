@@ -12,6 +12,7 @@
     :root{
       font-family: 'Roboto Mono', monospace;
       font-size: 10pt;
+      -webkit-text-size-adjust: none;
     }
 
     body{
@@ -45,7 +46,29 @@
       header > * {
         margin-bottom: 5rem;
         text-align: left !important;
+        max-width: 100%;
       }
+    }
+
+    main{
+      position: fixed;
+      z-index: -1;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main > img{
+      width: 30vmin;
+      height: 30vmin;
+
+      /* width: 70vmin;
+      height: 70vmin; */
     }
   </style>
 </head>
@@ -59,12 +82,13 @@
         (<a href="https://blog.ljcu.cc">blog</a>) 
         (<a href="https://github.com/ljcucc">github</a>) 
     </div>
-    <div style="text-align: right;width: 500px;">
-      A creator from Taiwan instrested in legcy copmtuing, creative coding and computing. <a href="mailto:yolks-briefer.0m@icloud.com">(contact)</a>
+    <div style="text-align: right;width: 500px; font-size: 10pt;">
+      A creator from Taiwan interested in legcy computing, creative coding and computing. <a href="mailto:yolks-briefer.0m@icloud.com">(contact)</a>
       </div>
   </header>
   <main>
-    <h2></h2>
+    <img src="./wolf.jpg" alt="">
+    <!-- <img src="./assets/test_animation_1.gif" alt=""> -->
   </main>
 </body>
 </html>
