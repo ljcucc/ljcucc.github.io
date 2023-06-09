@@ -1,125 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ljcu.cc</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-
-    :root{
-      font-family: 'Roboto Mono', monospace;
-      font-size: 10.3pt;
-      -webkit-text-size-adjust: none;
-    }
-
-    body{
-      padding:0;
-      margin: 12pt;
-      background: white;
-    }
-
-    header{
-      display: flex;
-      flex-flow: row;
-      mix-blend-mode: difference;
-    }
-
-    header > *{
-      flex: 1;
-    }
-
-    header *{
-      color: #eeeeee;
-    }
-
-    a:hover, .clickable:hover{
-      opacity: 0.5;
-      cursor: pointer;
-    }
-
-    a{
-      filter: grayscale(100%);
-      text-decoration: none;
-    }
-
-    @media screen and (max-width:600px){
-      header{
-        flex-direction: column;
-      }
-      header > * {
-        margin-bottom: 5rem;
-        text-align: left !important;
-        max-width: 100%;
-      }
-    }
-
-    main{
-      position: fixed;
-      z-index: -1;
-      top:0;
-      bottom:0;
-      left:0;
-      right:0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    main > img{
-      /* width: 30vmin;
-      height: 30vmin; */
-
-      width: 60vmin;
-      height: 60vmin;
-    }
-
-    time{
-      bottom:12pt;
-      left:12pt;
-      position:fixed;
-    }
-
-    .bottom{
-      bottom:12pt;
-      right:12pt;
-      position:fixed;
-    }
-  </style>
+  <title>ljcucc</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
+
 <body>
-  <header>
-    <div>
-      ljcu.cc <br> passion coder
+  <div class="app">
+    <div class="background">
+      <div class="background-shape"></div>
     </div>
-    <div style="text-align: center;">
-        (<a href="https://wiki.ljcu.cc">wiki</a>) 
-        (<a href="https://blog.ljcu.cc">blog</a>) 
-        (<a href="https://github.com/ljcucc">github</a>) 
-    </div>
-    <div style="text-align: right;width: 500px;">
-      A coder from Taiwan pursuing bachelor's degree of CS, interested in retro computing, creative coding and computing. <a href="mailto:yolks-briefer.0m@icloud.com">(contact)</a>
+    <div class="scrollable">
+      <div class="section" style="display: flex; flex-direction: column;">
+        <div style="flex:1;">
+          Hai (ljcucc) here. <br>
+          A Creative Coder <br>
+          from Taiwan 🏝 <br>
+        </div>
+        <div>
+          <span class="material-icons" style="font-size:9vmin;">
+            south
+          </span>
+        </div>
+
       </div>
-  </header>
-  <main>
-    <!-- <img src="./wolf.jpg" alt=""> -->
-    <img src="./assets/coding.gif" alt="">
-  </main>
+      <div class="section" style="display: flex; flex-direction: column;">
+        <div>
+          I've made
+        </div>
 
-  <time>loading time...</time>
+        <div style="flex: 1;display: flex;">
+          <div>
+            <br>
+            <a href="https://sicxe.ljcu.cc/" target="_blank">SIC/XE VM + Audio Visual.</a><br>
+            <a href="https://notes.ljcu.cc/" target="_blank">Note app - Webpack.</a><br>
+            <a href="https://github.com/ljcucc/yeechat/tree/dev" target="_blank">YeeChat.</a><br>
+          </div>
+        </div>
 
-  <div class="bottom">
-    <a href="https://wiki.ljcu.cc/site/machine">(computer <3)</a>
+      </div>
+      <div class="section" style="height: 0vmin;text-align: center;">
+        <div>
+          <span class="material-icons" style="font-size:9vmin;">
+            south
+          </span>
+        </div>
+      </div>
+      <div class="section" style="display: flex; flex-direction: column;text-align: center;">
+        <div>
+          Find me on
+        </div>
+
+        <div style="flex: 1;">
+          <br>
+          <a href="https://furries.init.engineer/@wolf" target="_blank">(mastodon)</a><br>
+          <a href="https://twitter.com/@the_ITWolf" target="_blank">(twitter)</a><br>
+          <a href="https://github.com/ljcucc" target="_blank">(github)</a><br>
+          <a href="https://unsplash.com/ljcucc" target="_blank">(unsplash)</a><br>
+
+        </div>
+
+      </div>
+      <div class="section" style="height: 0vmin;text-align: center;">
+        <span class="material-icons" style="font-size:9vmin;">
+          south
+        </span>
+      </div>
+      <div class="section" style="display: flex; align-items: center;justify-content: center;text-align: center;">
+        (follow me)
+      </div>
+    </div>
   </div>
-
-  <script>
-    let time = document.querySelector("time");
-    let updateTime = ()=>time.innerHTML = new Date().toLocaleTimeString();
-    setInterval(updateTime,1000);
-    updateTime();
-  </script>
 </body>
+<script src="index.js"></script>
+
 </html>
